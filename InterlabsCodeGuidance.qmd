@@ -142,7 +142,7 @@ Plus, the **Archive folder location:**
 * develop: /1_QMS
 :::
 
-![flow](src/flow.png)
+![flow](src/flow.png)^[modified from https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch]
 
 ::: {.notes}
 Working directory is your code directory
@@ -264,7 +264,7 @@ Where Descriptor = short human-readable descriptor of request
 ## Overall flow chart
 
 The image below shows a overall git flow chart, git action commands traverse the different work locations.
-![flow](src/flow.png)
+![flow](src/flow.png)^[modified from https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch]
 
 ## Repository
 We will need a repository to store all the files.
