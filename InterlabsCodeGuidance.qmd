@@ -218,6 +218,38 @@ print(sys.version)
 ```
 
 
+## Postgres SQL database (subject to change)
+1. Download the [zip package](https://www.enterprisedb.com/download-postgresql-binaries) from [PostgresSQL](https://www.postgresql.org/download/windows/).  **The installer version requires admin rights, hence use zip**  
+2. Unzip in a directory where you have read/write rights.  
+3. To allow for command line control - in windows menu, search for "Edit the environment variables" and edit in the Variable "Path"to include the bin directory of where you have unzipped postgres, e.g. "C:\\Users\\hoja\\Downloads\\postgresql-16.0-1-windows-x64-binaries\\pgsql\\bin" 
+4. [Create the database](https://www.geeksforgeeks.org/postgresql-installing-postgresql-without-admin-rights-on-windows/) and associate with user.  the user running this command must have full read/write privileges on the directory. they select for this.  
+```sh
+initdb -D C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data -U postgres -E UTF8
+```
+* -U postgres creates the superuser as postgres
+* -E UTF8 will create the database with UTF-8 encoding 
+
+5. To start Postgres:
+```sh
+pg_ctl -D C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data -l logfile start
+```
+pgAdmin.exe can also be used from the bin folder.  
+6. You may encounter the [following error](https://stackoverflow.com/questions/26441873/starting-postgresql-and-pgadmin-in-windows-without-installation) while starting psql.exe:
+```sh
+The error was "psql: FATAL : role [user] does not exist.
+```
+To resolve this,  
+i. Be on the same folder path (where you have initdb.exe) i.e. source-folder/pgsql/bin
+ii. Run 
+```sh
+psql -U postgres
+```
+Upon successful start up, the command line prompt should change to "postgres=#" as seen at the bottom of next figure.  
+![Top - initial setup, Bottom - routine entering postgres](img/cli-postgres)  
+  
+To exit, use the “\q” or “\quit” commands, and “CTRL + C”, “CTRL + D”, or “CTRL + Z” shortcut keys
+
+
 # Version Control
 ```{r}
 #Yuhan's section
