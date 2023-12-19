@@ -118,7 +118,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#linting-code-style-guide" id="toc-linting-code-style-guide" class="nav-link" data-scroll-target="#linting-code-style-guide"><span class="header-section-number">5</span> Linting / Code Style Guide</a></li>
   <li><a href="#refactoring" id="toc-refactoring" class="nav-link" data-scroll-target="#refactoring"><span class="header-section-number">6</span> Refactoring</a>
   <ul class="collapse">
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">6.1</span> functions</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">6.1</span> Functions</a>
+  <ul class="collapse">
+  <li><a href="#external-r-function-file" id="toc-external-r-function-file" class="nav-link" data-scroll-target="#external-r-function-file"><span class="header-section-number">6.1.1</span> External r function file</a></li>
+  </ul></li>
   <li><a href="#unit-testing-approaches-practices" id="toc-unit-testing-approaches-practices" class="nav-link" data-scroll-target="#unit-testing-approaches-practices"><span class="header-section-number">6.2</span> unit testing approaches &amp; practices</a></li>
   <li><a href="#unit-testing-framework" id="toc-unit-testing-framework" class="nav-link" data-scroll-target="#unit-testing-framework"><span class="header-section-number">6.3</span> Unit Testing Framework</a>
   <ul class="collapse">
@@ -241,8 +244,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ef9f9a488c0da52e9489" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-ef9f9a488c0da52e9489">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-200b98d3268f53f0b21e" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-200b98d3268f53f0b21e">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -887,7 +890,7 @@ lintr package will be set up with the main code to provide diagnostic linting (i
 <li>workflow</li>
 </ul>
 <section id="functions" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="functions"><span class="header-section-number">6.1</span> functions</h2>
+<h2 data-number="6.1" class="anchored" data-anchor-id="functions"><span class="header-section-number">6.1</span> Functions</h2>
 <p>We can write code into a function for a particular task that will be further reused, for example functions to generate specific gene target tables and plots. Using functions can also save many spaces with similar repetitive code.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How to writ a function</span></span>
@@ -896,7 +899,7 @@ lintr package will be set up with the main code to provide diagnostic linting (i
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#if you have multiple tables/variables, you can use 'return x' to output specific the table/variable you want</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># How to use this function</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># How to use/call this function</span></span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(argument)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>NULL</code></pre>
@@ -915,20 +918,24 @@ Note
 <p>Note: In our base code the function naming convention is: <strong>fn_verb_details</strong>.</p>
 </div>
 </div>
-<p>Since some functions have same purpose (e.x. generate plots), we can organize them all into an external r file (see example below) and use <strong>source(“path/filename.R”)</strong> to import all functions in that r file in base code file then call them to use. <img src="img/functionFile.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="external-r-function-file" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="external-r-function-file"><span class="header-section-number">6.1.1</span> External r function file</h3>
+<p>Since some functions have same purpose, we can organize them all into an external r file (see the plot functions example below) and use <strong>source(“path/filename.R”)</strong> to import all functions in that r file into base code. <img src="img/functionFile.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note: If you edit something in the external file, remember to save it and rerun the <strong>source()</strong> line to reload the updat file.</p>
+<p>Note: If you edit something in the external file, remember to save it and rerun the <strong>source()</strong> line to reload the update file.</p>
 </div>
 </div>
+<p>All the functions are shown in the <strong>Functions</strong> section in the Environment tab after run <strong>source()</strong>. <img src="img/functionSection.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="unit-testing-approaches-practices" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="unit-testing-approaches-practices"><span class="header-section-number">6.2</span> unit testing approaches &amp; practices</h2>
