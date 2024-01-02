@@ -246,11 +246,11 @@ postgres#= \c interlab
 ```
 
 You may encounter the [following error](https://stackoverflow.com/questions/26441873/starting-postgresql-and-pgadmin-in-windows-without-installation) while starting psql.exe:
-```sh
-The error was "psql: FATAL : role [user] does not exist.
-```
+
+ "psql: FATAL : role [user] does not exist.
+
 To resolve this,  
-i. Be on the same folder path (where you have initdb.exe) i.e. source-folder/pgsql/bin
+i. Be on the same folder path (where you have initdb.exe) i.e. "source-folder/pgsql/bin"
 ii. Run the following to login as user "interlab" which has been assigned superuser privileges for the "interlab database".  If not accessing the interlab database, login as general superuser -U postgres.  
 
 ```sh
@@ -427,7 +427,7 @@ To start working on a project, pull any new changes to update local copy. If the
 * You can view the history of your commit after click the left corner **History** beside the change. You can also view the commit history in other Git client app. Or check your past commits though type `git log` in terminal.
 
     
-* Check on the state of the Git world: type `git status` in terminal
+* Check on the state of the Git world: type "git status" in terminal
 
 ::: {.callout-note}
 For the files you don't want to push to Github you can list the them in [**.gitignore** file](#gitignore).
@@ -633,35 +633,6 @@ The user may then use the lintr result in the Markers pane as a guide to modify 
 - recommend every x period
 - workflow
 
-## Functions
-We can write code into a function for a particular task that will be further reused, for example functions to generate specific gene target tables and plots. Using functions can also save many spaces with similar repetitive code. 
-
-```{r}
-# How to writ a function
-function_name <- function(argument){
-  #function content, argument can be empty if there is no changing variable inside the function
-  #if you have multiple tables/variables, you can use 'return x' to output specific the table/variable you want
-}
-
-# How to use/call this function
-function_name(argument)
-```
-
-::: {.callout-note}
-Note: In our base code the function naming convention is: **fn_verb_details**.
-:::
- 
-### External r function file
-Since some functions have same purpose, we can organize them all into an external r file (see the plot functions example below) and use **source("path/filename.R")** to import all functions in that r file into base code. 
-![](img/functionFile.png)
-
-::: {.callout-important}
-Note: If you edit something in the external file, remember to save it and rerun the **source()** line to reload the update file.
-:::
-
-All the functions are shown in the **Functions** section in the Environment tab after run **source()**.
-![](img/functionSection.png)
-
 ## unit testing approaches & practices 
 *At the minimum, we should aim to write tests for the "happy path" of our application.
 
@@ -743,9 +714,115 @@ Cursory review in June 2023 found that base code functions (more suitable for te
 | 12.Project Completion Memo, performance metric                  | January 2023                     |         |
 |                                                                 |                                  |         |
 
+# Interactive QAQC App
+An upstream QAQC workflow was duplicated and separated out from the base code, as the process can lead to requests-to-amend or rejection of lab submittals (and consequently a hard "stop" to running the base code so the problematic submittal can be temporarily excluded).
 
+The QAQC workflow aligns with the QMS SOP and the participants ToR into a Shiny app that allows the analyst to singly screen each submittal with visual aid.  Submittals are also optionally collated into a PostgresSQL database for future use.
+
+## Usage Scenarios
+The version control for this application is in https://github.com/InterlabsOCWA/std_curve   
+Development occurs in two branches, the main differentiator being the presence of the database.  
+### web branch
+for quick usage, has "debug" file (which loads in a specific Rey round filled template for testing)
+### db branch
+
+## Future Framework Migration Research & Reflect
+The future intention is for the interlabs QAQC app to be available to participating labs, thereby separating potential role conflicts for the screening interlab staff (who should not be correcting submittals).  This utility app may be need to be built in tandem the main interlab website.  
+
+A September 2023 successful Shiny-based regulatory [submission](https://pharmaverse.github.io/blog/posts/2023-08-14_rhino_submission_2/rhino_submission_2.html) to the FDA can be considered a litmus test of recognition for the use of Shiny in compliance work requiring statistical review and evaluation. 
+
+The current QAQC app is built with flexdashboard with Shiny to allow for reactive elements.  The advantage is there is no separated ui and server files, allowing time to be focused on building functionality rather than building a shiny app.  However, in consideration of expansion with other website functions (e.g. user authentication, payment, multi-page navigation), it is unlikely the flexdashboard can support future needs.  
+
+Furthermore, to support the expansion, future staff is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices.  A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.
+
+### Available Framework options
+The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by [R-bloggers](https://appsilon.com/rhino-vs-golem-vs-leprechaun/)).  
+
+Leprechaun is not further evaluated as it does not have a built-in testing framework, which is desirable for our use.  However, it does not add extraneous (and itself) as dependency, which is advantages for the size and fragility of applications.  It may be worthwhile exploring at a future date.
+![available frameworks](https://wordpress.appsilon.com/wp-content/uploads/2023/11/Rhino_v_Golem_V_Lepre.webp)
+
+Rhino is the "new kid on the block", having been released by Appsilon early 2022. It is underpinned by the Box package.  Golem, released by ThinkR, is the more established framework, running under 
+
+Both Rhino and Golem are accompanied by their respective "universe" of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking.  The availability of these tools would be very helpful for the development of the interlabs app and hence, these two frameworks were evaluated further.
+
+#### At-first-glance
+ 
+**Folder structure** : Both frameworks emphasize modularity in construction.  Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories.  Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files.  A further R directory contains its UI, server and modularized logic operations R files.
+The folder structure organization are follows, respectively for the Rhino and Golem.
+
+```
+Rhinoappy
+├───.github
+│   └───workflows
+├───app
+│   ├───js
+│   ├───logic
+│   ├───static
+│   ├───styles
+│   └───view
+├───renv
+│   ├───library
+│   │   └───R-4.2
+│   │       └───x86_64-w64-mingw32
+│   │           ├───(various packages)
+│   │                   └───files
+│   └───staging
+└───tests
+    ├───cypress
+    │   └───integration
+    └───testthat
+```    
+    
+```
+golemappy
+├───dev
+├───inst
+│   └───app
+│       └───www
+├───man
+└───R
+```
+
+**Dependency management** : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used.  Golem (as learnt in the pharmaverse workshop) may also use renv, although that was not clear in its template set-up (perhaps requires an extra call?).  
+
+**Learning Curve & guidance** : Both frameworks have good documentation.  However (as described in detail in next section's time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along within the script.  Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app).  It is necessary to working with the docs open by its side.  Just by the sheer extent of the default template folder structure, it takes more time to figure out and update all the corresponding elements.  Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering perspective.
+
+**How to render (in developement** 
+Rhino is simpler in this aspect, requiring a single console command.  Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.
+
+Rhino
+```
+shiny::runApp()
+```
+
+Golem
+```
+# Detach all loaded packages and clean your environment
+golem::detach_all_attached()
+# rm(list=ls(all.names = TRUE))
+
+# Document and reload your package
+golem::document_and_reload()
+golem::run_dev()
+```
+
+**Common concepts** namespace, modularization
+
+
+
+![Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim](https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e)
+
+
+#### Rhino vs. Golem
+In discussion of these frameworks with a mentor (not fluent in R), a take-away advice was to check the number of downloads - e.g. in the frameworks the mentor would advise for python (flask), downloads would be in the millions.
+
+A roughly^ 1-hr time-boxed trial was conducted in both frameworks to "wet the toes".  The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (see how to add a second modular feature)
+
+**Tabulate overall impressions**
+https://docs.google.com/document/d/1MotX9AKWBvvwUBoE2rd5J92uZmP4x0OFo0V1nDq4nQo/edit
 
 # References
+
 
 *WWS Working Platforms*\
 https://github.com/InterlabsOCWA\
@@ -826,6 +903,8 @@ refactoring requires us to be able to ensure that behavior remains identical at 
 -   Add few (automated) tests. Start with code candidate to change first. If code wasn't designed to be testable, don't change it yet. Make your best to test it as is. This is very important.
 
 
+
+
 ### Misc. heap of code
 Find main package list + versions:
 ```{r}
@@ -837,4 +916,8 @@ print(head
       ), n=600 #where n = an appropriately large value to capture all your packages
       )
 )
+```
+
+```sh
+cmd //c tree
 ```
