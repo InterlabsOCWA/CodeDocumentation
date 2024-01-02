@@ -229,11 +229,11 @@ initdb -D C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data -U postgres -E UTF8
 * -U postgres creates the superuser as postgres
 * -E UTF8 will create the database with UTF-8 encoding 
 
-5. To start Postgres server:
+5. To start Postgres server, use the below command adapting the path to where you've previously set as database storage above:
 ```sh
 pg_ctl -D C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data -l logfile start
 ```
-To then access the database using command line, follow step 6.  To access using pgAdmin, follow step 7.
+The command line should then respond with "waiting for server to start.....done.  Server started"  To then access the database using command line, follow step 6.  To access using pgAdmin, follow step 7.
 
 6. Access client using
 ```sh
