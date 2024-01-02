@@ -633,6 +633,35 @@ The user may then use the lintr result in the Markers pane as a guide to modify 
 - recommend every x period
 - workflow
 
+## Functions
+We can write code into a function for a particular task that will be further reused, for example functions to generate specific gene target tables and plots. Using functions can also save many spaces with similar repetitive code. 
+
+```{r}
+# How to writ a function
+function_name <- function(argument){
+  #function content, argument can be empty if there is no changing variable inside the function
+  #if you have multiple tables/variables, you can use 'return x' to output specific the table/variable you want
+}
+
+# How to use/call this function
+function_name(argument)
+```
+
+::: {.callout-note}
+Note: In our base code the function naming convention is: **fn_verb_details**.
+:::
+ 
+### External r function file
+Since some functions have same purpose, we can organize them all into an external r file (see the plot functions example below) and use **source("path/filename.R")** to import all functions in that r file into base code. 
+![](img/functionFile.png)
+
+::: {.callout-important}
+Note: If you edit something in the external file, remember to save it and rerun the **source()** line to reload the update file.
+:::
+
+All the functions are shown in the **Functions** section in the Environment tab after run **source()**.
+![](img/functionSection.png)
+
 ## unit testing approaches & practices 
 *At the minimum, we should aim to write tests for the "happy path" of our application.
 
