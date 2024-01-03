@@ -73,6 +73,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="InterlabsCodeGuidance_files/libs/sankey-1/sankey.js"></script>
 <script src="InterlabsCodeGuidance_files/libs/sankeyNetwork-binding-0.4/sankeyNetwork.js"></script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -242,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-24c47f5a3c404f06848b" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-24c47f5a3c404f06848b">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f0af9f9e55656bc751c3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f0af9f9e55656bc751c3">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1091,7 +1107,7 @@ Development occurs in two branches, the main differentiator being the presence o
 <p>Both Rhino and Golem are accompanied by their respective “universe” of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking. The availability of these tools would be very helpful for the development of the interlabs app and hence, these two frameworks were evaluated further.</p>
 <section id="at-first-glance" class="level4" data-number="7.2.1.1">
 <h4 data-number="7.2.1.1" class="anchored" data-anchor-id="at-first-glance"><span class="header-section-number">7.2.1.1</span> At-first-glance</h4>
-<p><strong>Folder structure</strong> : Both frameworks emphasize modularity in construction. Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories. Golem is reminiscent of R package development, being more simply separated essentially by workflow within the key dev folder: configuration, development and deployment file-creation R files. A further R directory contains its UI, server and modularized logic operations R files. The folder structure organization are follows, respectively for the Rhino and Golem.</p>
+<p><strong>Folder structure</strong> : Both frameworks emphasize modularity in construction. Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories. Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files. A further R directory contains its UI, server and modularized logic operations R files. The folder structure organization are follows, respectively for the Rhino and Golem.</p>
 <pre><code>Rhinoappy
 ├───.github
 │   └───workflows
@@ -1119,10 +1135,10 @@ Development occurs in two branches, the main differentiator being the presence o
 │       └───www
 ├───man
 └───R</code></pre>
-<p><strong>Dependency management</strong> : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used. Golem (as learnt in the pharmaverse workshop) may also use renv, although that was not clear in its template set-up (perhaps requires an extra call?).</p>
+<p><strong>Dependency management</strong> : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used. At deployment though, it still requires packrat. Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.</p>
 <p><strong>Learning Curve &amp; guidance</strong> : Both frameworks have good documentation. However (as described in detail in next section’s time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along within the script. Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app). It is necessary to working with the docs open by its side. Just by the sheer extent of the default template folder structure, it takes more time to figure out and update all the corresponding elements. Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering perspective.</p>
-<p><strong>How to render (in developement</strong> Rhino is simpler in this aspect, requiring a single console command. Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.</p>
-<p>Rhino</p>
+<p><strong>How to render (in developement)</strong> Rhino is simpler in this aspect, requiring a single console command. Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.</p>
+<p><strong>What is exciting</strong> The testing structure provided in both frameworks is a key attractor. Unit testing for both appears to be the same, based on Hadley’s testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not. Rhino’s other selling point is integrated github CI which includes e.g.&nbsp;linting. Rhino</p>
 <pre><code>shiny::runApp()</code></pre>
 <p>Golem</p>
 <pre><code># Detach all loaded packages and clean your environment
@@ -1144,6 +1160,68 @@ golem::run_dev()</code></pre>
 <h4 data-number="7.2.1.2" class="anchored" data-anchor-id="rhino-vs.-golem"><span class="header-section-number">7.2.1.2</span> Rhino vs.&nbsp;Golem</h4>
 <p>In discussion of these frameworks with a mentor (not fluent in R), a take-away advice was to check the number of downloads - e.g.&nbsp;in the frameworks the mentor would advise for python (flask), downloads would be in the millions.</p>
 <p>A roughly^ 1-hr time-boxed trial was conducted in both frameworks to “wet the toes”. The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (see how to add a second modular feature)</p>
+<p><strong>overall impressions</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 45%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Golem</th>
+<th>Rhino</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Objective reached?</td>
+<td>50%. Plotted a standard dataset (iris) graph only. The logic for the downloads count was written (and works outside of the app) but plot did not render.</td>
+<td>50% Plotted (a different) standard dataset (rhino’s rhinos) graph since the usual iris was not load-able. Second graph using ggplot was not rendered (see syntax issue)</td>
+</tr>
+<tr class="even">
+<td>Sticking-point</td>
+<td>namespace mistake - within the function module file, the name for the second graph was spelt differently between the namespace taglist and server function output</td>
+<td>Syntax to use functions from packages. Had trouble calling the usual in-the-box default iris dataset and using ggplot.</td>
+</tr>
+<tr class="odd">
+<td>Actual finish time</td>
+<td>~1:30 with extra time spent on i) sticking-point ii) adding renv package lock file a posteriori (did not realize it did not generate by default)</td>
+<td>~1:30 sticking point with the syntax</td>
+</tr>
+<tr class="even">
+<td>Structure</td>
+<td>For user without a basis in R package development, this was actually more foreign than Rhino. Needed to refer to a previously viewed video walkthrough and read the in-script guidance comments.</td>
+<td>Very similar to js react &amp; express structure</td>
+</tr>
+<tr class="odd">
+<td>Syntax</td>
+<td>Highly similar to daily R coding. Commented-out examples in default files were extremely helpful.</td>
+<td>Spent majority of time grappling with syntax to be able to use ggplot (tutorials use echarts4r, probably a nudge thereto given its speedier render) and even the basic iris dataset. Needed to understand the box package and calling packages’ functions (even ones not normally thought of as functions, e.g.&nbsp;ggplot’s aes) in the form of package<span class="math inline">function. Same for dataset</span>iris</td>
+</tr>
+<tr class="even">
+<td>Workflow</td>
+<td>Extremely clear using the prescriptive steps provided as in-script comments. Uses three lines of code in the run_dev file to render each line.</td>
+<td>Less clear, coder need to keep track but has the option to render app more simply any time. May be meant to be flexible for task distribution in a team</td>
+</tr>
+<tr class="odd">
+<td>Mental effort, open files</td>
+<td>5 (ui, server, 1st graph module, 2nd graph module, run_dev). ui &amp; server files are separate (and of course the modules) so there is a bit of flipping back and forth to ensure the correct modules aspects are called between files. There are useful auto-generated scripts that comes with generated modules directing copy-this-to-ui &amp; copy-that-to-server</td>
+<td>3 (main.R, 1st graph module, 2nd graph module) for this simple use, a single main.R file holds both ui and server scripts so there is one less open file to juggle.</td>
+</tr>
+<tr class="even">
+<td>Size (pre-deployment, completed with two plots)</td>
+<td>140 KB, 60 files, 27 folders. The renv is substantially lighter containing no actual libraries, only a json settings record of library versions</td>
+<td>3.82 MB, 134 files, 49 folders. More than half of which (2.40 MB, 83 files, 18 folders) due to the renv holding actual libraries scripts (only two “used” were explicitly called in code, but all their sub-libraries are included)</td>
+</tr>
+<tr class="odd">
+<td>Deployment</td>
+<td>Workflow required test process (~5 minutes) and with clear reports on asserts pass/fail. Deployment to shinyapps.io straightforward using IDE shortcut. Failing functions namespace (seems to be library in local vs.&nbsp;global namespace) so deployment did not render plots.</td>
+<td>No “shepherding” to pre-deployment testing but deployment successful. Deployment to shinyapps.io straightforward using IDE shortcut.</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 </section>

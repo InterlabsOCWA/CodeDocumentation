@@ -733,7 +733,7 @@ A September 2023 successful Shiny-based regulatory [submission](https://pharmave
 
 The current QAQC app is built with flexdashboard with Shiny to allow for reactive elements.  The advantage is there is no separated ui and server files, allowing time to be focused on building functionality rather than building a shiny app.  However, in consideration of expansion with other website functions (e.g. user authentication, payment, multi-page navigation), it is unlikely the flexdashboard can support future needs.  
 
-Furthermore, to support the expansion, future staff is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices.  A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.
+Furthermore, future staff slated to support the expansion is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices.  A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.
 
 ### Available Framework options
 The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by [R-bloggers](https://appsilon.com/rhino-vs-golem-vs-leprechaun/)).  
@@ -749,7 +749,8 @@ Both Rhino and Golem are accompanied by their respective "universe" of supportin
  
 **Folder structure** : Both frameworks emphasize modularity in construction.  Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories.  Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files.  A further R directory contains its UI, server and modularized logic operations R files.
 The folder structure organization are follows, respectively for the Rhino and Golem.
-
+  
+Rhino app folder structure  
 ```
 Rhinoappy
 ├───.github
@@ -772,7 +773,8 @@ Rhinoappy
     │   └───integration
     └───testthat
 ```    
-    
+  
+Golem folder structure
 ```
 golemappy
 ├───dev
@@ -783,13 +785,15 @@ golemappy
 └───R
 ```
 
-**Dependency management** : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used.  Golem (as learnt in the pharmaverse workshop) may also use renv, although that was not clear in its template set-up (perhaps requires an extra call?).  
+**Dependency management** : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used.  At deployment though, it still requires packrat.  Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.  
 
 **Learning Curve & guidance** : Both frameworks have good documentation.  However (as described in detail in next section's time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along within the script.  Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app).  It is necessary to working with the docs open by its side.  Just by the sheer extent of the default template folder structure, it takes more time to figure out and update all the corresponding elements.  Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering perspective.
 
-**How to render (in developement** 
+**How to render (in developement)** 
 Rhino is simpler in this aspect, requiring a single console command.  Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.
 
+**What is exciting**
+The testing structure provided in both frameworks is a key attractor.  Unit testing for both appears to be the same, based on Hadley's testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not.  Rhino's other selling point is integrated github CI which includes e.g. linting.
 Rhino
 ```
 shiny::runApp()
@@ -810,16 +814,27 @@ golem::run_dev()
 
 
 
-![Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim](https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e)
-
+![Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*nMDRb0pu3uvCTalCYY_Lkw.png)
+Source: ["How to make a cheatsheet for Rhino" (Kim, J.) ](https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e)
 
 #### Rhino vs. Golem
 In discussion of these frameworks with a mentor (not fluent in R), a take-away advice was to check the number of downloads - e.g. in the frameworks the mentor would advise for python (flask), downloads would be in the millions.
 
 A roughly^ 1-hr time-boxed trial was conducted in both frameworks to "wet the toes".  The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (see how to add a second modular feature)
 
-**Tabulate overall impressions**
-https://docs.google.com/document/d/1MotX9AKWBvvwUBoE2rd5J92uZmP4x0OFo0V1nDq4nQo/edit
+**overall impressions**  
+  
+| Aspect                                          | Golem                                                                                                                                                                                                                                                                                                                                                           | Rhino                                                                                                                                                                                                                                                                                                                                                                                  |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Objective reached?                              | 50%.  Plotted a standard dataset (iris) graph only.  The logic for the downloads count was written (and works outside of the app) but plot did not render.                                                                                                                                                                                                      | 50% Plotted (a different) standard dataset (rhino's rhinos) graph since the usual iris was not load-able.  Second graph using ggplot was not rendered (see syntax issue)                                                                                                                                                                                                               |
+| Sticking-point                                  | namespace mistake - within the function module file, the name for the second graph was spelt differently between the namespace taglist and server function output                                                                                                                                                                                               | Syntax to use functions from packages.  Had trouble calling the usual in-the-box default iris dataset and using ggplot.                                                                                                                                                                                                                                                                |
+| Actual finish time                              | ~1:30 with extra time spent on i) sticking-point ii) adding renv package lock file a posteriori (did not realize it did not generate by default)                                                                                                                                                                                                                | ~1:30 sticking point with the syntax                                                                                                                                                                                                                                                                                                                                                   |
+| Structure                                       | For user without a basis in R package development, this was actually more foreign than Rhino.  Needed to refer to a previously viewed video walkthrough and read the in-script guidance comments.                                                                                                                                                               | Very similar to js react & express structure                                                                                                                                                                                                                                                                                                                                           |
+| Syntax                                          | Highly similar to daily R coding.  Commented-out examples in default files were extremely helpful.                                                                                                                                                                                                                                                              | Spent majority of time grappling with syntax to be able to use ggplot (tutorials use echarts4r, probably a nudge thereto given its speedier render) and even the basic iris dataset.  Needed to understand the box package and calling packages' functions (even ones not normally thought of as functions, e.g. ggplot's aes) in the form of package$function.  Same for dataset$iris |
+| Workflow                                        | Extremely clear using the prescriptive steps provided as in-script comments.  Uses three lines of code in the run_dev file to render each line.                                                                                                                                                                                                                 | Less clear, coder need to keep track but has the option to render app more simply any time.  May be meant to be flexible for task distribution in a team                                                                                                                                                                                                                               |
+| Mental effort, open files                       | 5 (ui, server, 1st graph module, 2nd graph module, run_dev). ui & server files are separate (and of course the modules) so there is a bit of flipping back and forth to ensure the correct modules aspects are called between files.  There are useful auto-generated scripts that comes with generated modules directing copy-this-to-ui & copy-that-to-server | 3 (main.R, 1st graph module, 2nd graph module) for this simple use, a single main.R file holds both ui and server scripts so there is one less open file to juggle.                                                                                                                                                                                                                    |
+| Size (pre-deployment, completed with two plots) | 140 KB, 60 files, 27 folders.  The renv is substantially lighter containing no actual libraries, only a json settings record of library versions                                                                                                                                                                                                                | 3.82 MB, 134 files, 49 folders.  More than half of which (2.40 MB, 83 files, 18 folders) due to the renv holding actual libraries scripts (only two "used" were explicitly called in code, but all their sub-libraries are included)                                                                                                                                                   |
+| Deployment                                      | Workflow required test process (~5 minutes) and with clear reports on asserts pass/fail.  Deployment to shinyapps.io straightforward using IDE shortcut.  Failing functions namespace (seems to be library in local vs. global namespace) so deployment did not render plots.                                                                                                | No "shepherding" to pre-deployment testing but deployment successful.  Deployment to shinyapps.io straightforward using IDE shortcut.                                                                                                                                                                                                                                                  |
 
 # References
 
