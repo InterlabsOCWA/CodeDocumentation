@@ -873,6 +873,9 @@ rsconnect::deployApp(
 )
 ```
 
+Helpful & confidence-building test results from Golem's pre-deployment checks:  
+![Golem pre-deployment testing](src/framework_test.png)
+
 
 #### Rhino vs. Golem
 In discussion of how to approach exploring these frameworks with a mentor (not fluent in R), one advice was to check the number of downloads which is indicative of uptake and available community support - e.g. in the frameworks the mentor would advise for python (flask), downloads would be in the millions.  Official downloads counts of Rhino and Golem are available from CRAN.  

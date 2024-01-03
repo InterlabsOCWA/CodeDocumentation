@@ -258,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f1b2416a33d46672ab3a" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f1b2416a33d46672ab3a">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cd4041645c8ae97c5fa7" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-cd4041645c8ae97c5fa7">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1206,6 +1206,8 @@ rsconnect::deployApp(
   lint = FALSE,
   forceUpdate = TRUE
 )</code></pre>
+<p>Helpful &amp; confidence-building test results from Golem’s pre-deployment checks:<br>
+<img src="src/framework_test.png" class="img-fluid" alt="Golem pre-deployment testing"></p>
 </section>
 <section id="rhino-vs.-golem" class="level4" data-number="7.2.1.2">
 <h4 data-number="7.2.1.2" class="anchored" data-anchor-id="rhino-vs.-golem"><span class="header-section-number">7.2.1.2</span> Rhino vs.&nbsp;Golem</h4>
@@ -1282,8 +1284,12 @@ rsconnect::deployApp(
 </table>
 <p>The result of the deployment stretch goal is shown below, with Golem on left, Rhino on right. Golem’s included pre-deployment tests had several warnings about packages not being in the global environment. Hence its deployment is certainly mea culpa (lack of understanding of namespacing?) and not due to the framework, which did kindly &amp; rather clearly gave specific warnings. Rhino, on the other hand, did even render until the syntax issues were resolved - and when it deployed, it was WYSIWYG from the render. <img src="src/framework_deployed.png" class="img-fluid" alt="deployed apps - golem on left, Rhino on right"></p>
 <p><strong>What is exciting</strong> The testing structure provided in both frameworks is a key attractor. Unit testing for both appears to be the same, based on Hadley’s testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not. Golem’s included unit tests pre-deployment is excellent. Rhino’s other selling point is integrated github CI which includes e.g.&nbsp;linting.</p>
-<p><strong>Common concepts to take-away and potential challenges explore further</strong> - namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces - allowance for performative coding e.g.&nbsp;Do proxy update using just client-side based on key events to avoid server calls<br>
-- Rhino requires Node js &gt; version 12. Are there conflicts between Rhino and different post-12 versions of node js? friction points with react (or okay as long as you use Rhino’s own react package) - Rhino’s specificity and use of box seems to create much more verbose script. Explore if there are options to condense, otherwise existing ggplot figures will be extremely lengthy if migrated over - providers (Appsilon, ThinkR) &amp; community support</p>
+<p><strong>Common concepts to take-away and potential challenges explore further</strong><br>
+- namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces<br>
+- allowance for performative coding e.g.&nbsp;Do proxy update using just client-side based on key events to avoid server calls<br>
+- Rhino requires Node js &gt; version 12. Are there conflicts between Rhino and different post-12 versions of node js? friction points with react (or okay as long as you use Rhino’s own react package)<br>
+- Rhino’s specificity and use of box seems to create much more verbose script. Explore if there are options to condense, otherwise existing ggplot figures will be extremely lengthy if migrated over - providers (Appsilon, ThinkR) &amp; community support<br>
+- ease-of-approach to user authentication and payments (which are major feature needs)</p>
 </section>
 </section>
 </section>
