@@ -258,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f0af9f9e55656bc751c3" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f0af9f9e55656bc751c3">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f1b2416a33d46672ab3a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f1b2416a33d46672ab3a">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1091,23 +1091,35 @@ lintr package will be set up with the main code to provide diagnostic linting (i
 <h2 data-number="7.1" class="anchored" data-anchor-id="usage-scenarios"><span class="header-section-number">7.1</span> Usage Scenarios</h2>
 <p>The version control for this application is in https://github.com/InterlabsOCWA/std_curve<br>
 Development occurs in two branches, the main differentiator being the presence of the database.<br>
-### web branch for quick usage, has “debug” file (which loads in a specific Rey round filled template for testing) ### db branch</p>
+### web branch<br>
+for quick usage, has “debug” file (which loads in a specific Rey round filled template for testing) ### db branch<br>
+<em>insert presentation slides here?</em></p>
 </section>
 <section id="future-framework-migration-research-reflect" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="future-framework-migration-research-reflect"><span class="header-section-number">7.2</span> Future Framework Migration Research &amp; Reflect</h2>
 <p>The future intention is for the interlabs QAQC app to be available to participating labs, thereby separating potential role conflicts for the screening interlab staff (who should not be correcting submittals). This utility app may be need to be built in tandem the main interlab website.</p>
-<p>A September 2023 successful Shiny-based regulatory <a href="https://pharmaverse.github.io/blog/posts/2023-08-14_rhino_submission_2/rhino_submission_2.html">submission</a> to the FDA can be considered a litmus test of recognition for the use of Shiny in compliance work requiring statistical review and evaluation.</p>
-<p>The current QAQC app is built with flexdashboard with Shiny to allow for reactive elements. The advantage is there is no separated ui and server files, allowing time to be focused on building functionality rather than building a shiny app. However, in consideration of expansion with other website functions (e.g.&nbsp;user authentication, payment, multi-page navigation), it is unlikely the flexdashboard can support future needs.</p>
-<p>Furthermore, to support the expansion, future staff is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices. A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.</p>
+<p>A September 2023 successful Shiny-based regulatory <a href="https://pharmaverse.github.io/blog/posts/2023-08-14_rhino_submission_2/rhino_submission_2.html">submission</a> to the FDA can be considered a litmus test of recognition for the use of R &amp; Shiny-built apps in compliance work requiring statistical review and evaluation.</p>
+<p>The current QAQC app is built using flexdashboard with Shiny reactive elements. The advantage is there is a “single source of truth” i.e.&nbsp;no separated ui &amp; server, front &amp; backend files. This allows time to be focused on building functionality rather than app-building and synchronizing variables/functions across front and back-end file sets. However, in consideration of expansion with other website functions (e.g.&nbsp;user authentication, payment, multi-page navigation, routing), it is unlikely the flexdashboard can support future needs.</p>
+<p>Furthermore, future staff slated to support the expansion is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices. A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.</p>
 <section id="available-framework-options" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="available-framework-options"><span class="header-section-number">7.2.1</span> Available Framework options</h3>
-<p>The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by <a href="https://appsilon.com/rhino-vs-golem-vs-leprechaun/">R-bloggers</a>).</p>
-<p>Leprechaun is not further evaluated as it does not have a built-in testing framework, which is desirable for our use. However, it does not add extraneous (and itself) as dependency, which is advantages for the size and fragility of applications. It may be worthwhile exploring at a future date. <img src="https://wordpress.appsilon.com/wp-content/uploads/2023/11/Rhino_v_Golem_V_Lepre.webp" class="img-fluid" alt="available frameworks"></p>
-<p>Rhino is the “new kid on the block”, having been released by Appsilon early 2022. It is underpinned by the Box package. Golem, released by ThinkR, is the more established framework, running under</p>
-<p>Both Rhino and Golem are accompanied by their respective “universe” of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking. The availability of these tools would be very helpful for the development of the interlabs app and hence, these two frameworks were evaluated further.</p>
+<p>The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by <a href="https://appsilon.com/rhino-vs-golem-vs-leprechaun/">G.Kenneth for Appsilon</a>).</p>
+<p><img src="https://wordpress.appsilon.com/wp-content/uploads/2023/11/Rhino_v_Golem_V_Lepre.webp" class="img-fluid" alt="available frameworks"> <strong>Image source: <a href="https://appsilon.com/rhino-vs-golem-vs-leprechaun/">Appsilon</a></strong></p>
+<p>Leprechaun is not further evaluated as it does not have a built-in testing framework, which is desirable for our use. Different from the other two options, it does not add extraneous (including itself) as a dependency, which is advantageous for the size and fragility of applications. It may be worthwhile exploring at a second pass.</p>
+<p>Rhino is the “new kid on the block”, having been released by Appsilon early 2022. It is underpinned by the Box package. Golem, released by ThinkR, is the more established framework, running under the paradigm of package creation, including the associated rigourous testing procedures.</p>
+<p>Both Rhino and Golem are accompanied by their respective “universe” of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking. The availability of these tools would be very helpful for the development of the interlabs QAQC app and hence, these two frameworks were evaluated further.</p>
 <section id="at-first-glance" class="level4" data-number="7.2.1.1">
 <h4 data-number="7.2.1.1" class="anchored" data-anchor-id="at-first-glance"><span class="header-section-number">7.2.1.1</span> At-first-glance</h4>
-<p><strong>Folder structure</strong> : Both frameworks emphasize modularity in construction. Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories. Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files. A further R directory contains its UI, server and modularized logic operations R files. The folder structure organization are follows, respectively for the Rhino and Golem.</p>
+<p><strong>Folder structure</strong> : Both frameworks emphasize modularity in construction. Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories. Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files. A further R directory contains its UI, server and modularized logic operations R files. The folder structure organization are follows:</p>
+<p>Golem folder structure</p>
+<pre><code>golemappy
+├───dev
+├───inst
+│   └───app
+│       └───www
+├───man
+└───R</code></pre>
+<p>Rhino app folder structure</p>
 <pre><code>Rhinoappy
 ├───.github
 │   └───workflows
@@ -1128,19 +1140,14 @@ Development occurs in two branches, the main differentiator being the presence o
     ├───cypress
     │   └───integration
     └───testthat</code></pre>
-<pre><code>golemappy
-├───dev
-├───inst
-│   └───app
-│       └───www
-├───man
-└───R</code></pre>
+<p>Alternatively, Rhino exclusive of its E2E tests and config settings, conceptually broken down:<br>
+<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*nMDRb0pu3uvCTalCYY_Lkw.png" class="img-fluid" alt="Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim"> Source: <a href="https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e">“How to make a cheatsheet for Rhino” (Kim, J.)</a></p>
 <p><strong>Dependency management</strong> : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used. At deployment though, it still requires packrat. Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.</p>
-<p><strong>Learning Curve &amp; guidance</strong> : Both frameworks have good documentation. However (as described in detail in next section’s time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along within the script. Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app). It is necessary to working with the docs open by its side. Just by the sheer extent of the default template folder structure, it takes more time to figure out and update all the corresponding elements. Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering perspective.</p>
-<p><strong>How to render (in developement)</strong> Rhino is simpler in this aspect, requiring a single console command. Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.</p>
-<p><strong>What is exciting</strong> The testing structure provided in both frameworks is a key attractor. Unit testing for both appears to be the same, based on Hadley’s testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not. Rhino’s other selling point is integrated github CI which includes e.g.&nbsp;linting. Rhino</p>
+<p><strong>Learning Curve &amp; guidance</strong> : Both frameworks have good documentation. However (as described in detail in next section’s time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along just within the script. Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app). It is necessary to working with the docs open by its side. Just by the sheer extent of the default template folder structure, it is likely to take more time to figure out and update all the corresponding elements. Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering background.</p>
+<p><strong>How to render (in development) &amp; How to deploy</strong> Rhino is simpler in this aspect, requiring a single console command. Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.</p>
+<p>Rhino render command</p>
 <pre><code>shiny::runApp()</code></pre>
-<p>Golem</p>
+<p>Golem render command</p>
 <pre><code># Detach all loaded packages and clean your environment
 golem::detach_all_attached()
 # rm(list=ls(all.names = TRUE))
@@ -1148,18 +1155,69 @@ golem::detach_all_attached()
 # Document and reload your package
 golem::document_and_reload()
 golem::run_dev()</code></pre>
-<p><strong>Common concepts</strong> namespace, modularization</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim</figcaption><p></p>
-</figure>
-</div>
+<p>Both are deployed using from the app.R in their main directory, which allows the use of the “publish” shortcut in the RStudio IDE. Golem’s deploy step R file provides testing commands that should be &amp; are easily run pre-deployment with clear console report-out on test results.</p>
+<p>Rhino deploy command</p>
+<pre><code># Rhino / shinyApp entrypoint. Do not edit.
+rhino::app()</code></pre>
+<p>Golem deploy command (many options provided…just used the test portion then IDE shortcut)</p>
+<pre><code># Test your app
+
+## Run checks ----
+## Check the package before sending to prod
+devtools::check()
+rhub::check_for_cran()
+
+# Deploy
+
+## Local, CRAN or Package Manager ----
+## This will build a tar.gz that can be installed locally,
+## sent to CRAN, or to a package manager
+devtools::build()
+
+## RStudio ----
+## If you want to deploy on RStudio related platforms
+golem::add_rstudioconnect_file()
+golem::add_shinyappsio_file()
+golem::add_shinyserver_file()
+
+## Docker ----
+## If you want to deploy via a generic Dockerfile
+golem::add_dockerfile_with_renv()
+
+## If you want to deploy to ShinyProxy
+golem::add_dockerfile_with_renv_shinyproxy()
+
+
+# Deploy to Posit Connect or ShinyApps.io
+# In command line.
+rsconnect::deployApp(
+  appName = desc::desc_get_field("Package"),
+  appTitle = desc::desc_get_field("Package"),
+  appFiles = c(
+    # Add any additional files unique to your app here.
+    "R/",
+    "inst/",
+    "data/",
+    "NAMESPACE",
+    "DESCRIPTION",
+    "app.R"
+  ),
+  appId = rsconnect::deployments(".")$appID,
+  lint = FALSE,
+  forceUpdate = TRUE
+)</code></pre>
 </section>
 <section id="rhino-vs.-golem" class="level4" data-number="7.2.1.2">
 <h4 data-number="7.2.1.2" class="anchored" data-anchor-id="rhino-vs.-golem"><span class="header-section-number">7.2.1.2</span> Rhino vs.&nbsp;Golem</h4>
-<p>In discussion of these frameworks with a mentor (not fluent in R), a take-away advice was to check the number of downloads - e.g.&nbsp;in the frameworks the mentor would advise for python (flask), downloads would be in the millions.</p>
-<p>A roughly^ 1-hr time-boxed trial was conducted in both frameworks to “wet the toes”. The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (see how to add a second modular feature)</p>
+<p>In discussion of how to approach exploring these frameworks with a mentor (not fluent in R), one advice was to check the number of downloads which is indicative of uptake and available community support - e.g.&nbsp;in the frameworks the mentor would advise for python (flask), downloads would be in the millions. Official downloads counts of Rhino and Golem are available from CRAN.</p>
+<p>A roughly^ 1-hour time-boxed trial was conducted in both frameworks to “wet the toes”. The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (to see how to add a second module). The build was done on a Windows laptop, R 4.3.2, RStudio as IDE, with Node v.16 (required for Rhino). As a stretch step beyond the timebox, an existing Shinyapps.io account was used for deployment. Datasets used are the publicly available CRAN downloads count, R’s in-the-box iris test data (and Rhino’s similar test rhinos test until I figured out how to import iris into Rhino).</p>
+<p>Rendered results are as follows, with Golem on left and Rhino on right (missing its title as Rhino requires a box::use call to be even able to add a h1 heading which was figured out after the 1-hour limit). Both plots for Rhino were made post the 1-hour timebox due to not understanding the package call syntax (which meant both datasets and ggplot failed to work). The top plots were rendered using iris dataset, in base R for Golem and ggplot (used it as a step to figure the syntax) for Rhino, respectively. Bottom plots were the CRAN downloads data plotted using ggplot (much higher downloads for older and well-established Golem!)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="src/framework_rendered.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">rendered apps - golem on left, Rhino on right</figcaption><p></p>
+</figure>
+</div>
 <p><strong>overall impressions</strong></p>
 <table class="table">
 <colgroup>
@@ -1222,6 +1280,10 @@ golem::run_dev()</code></pre>
 </tr>
 </tbody>
 </table>
+<p>The result of the deployment stretch goal is shown below, with Golem on left, Rhino on right. Golem’s included pre-deployment tests had several warnings about packages not being in the global environment. Hence its deployment is certainly mea culpa (lack of understanding of namespacing?) and not due to the framework, which did kindly &amp; rather clearly gave specific warnings. Rhino, on the other hand, did even render until the syntax issues were resolved - and when it deployed, it was WYSIWYG from the render. <img src="src/framework_deployed.png" class="img-fluid" alt="deployed apps - golem on left, Rhino on right"></p>
+<p><strong>What is exciting</strong> The testing structure provided in both frameworks is a key attractor. Unit testing for both appears to be the same, based on Hadley’s testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not. Golem’s included unit tests pre-deployment is excellent. Rhino’s other selling point is integrated github CI which includes e.g.&nbsp;linting.</p>
+<p><strong>Common concepts to take-away and potential challenges explore further</strong> - namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces - allowance for performative coding e.g.&nbsp;Do proxy update using just client-side based on key events to avoid server calls<br>
+- Rhino requires Node js &gt; version 12. Are there conflicts between Rhino and different post-12 versions of node js? friction points with react (or okay as long as you use Rhino’s own react package) - Rhino’s specificity and use of box seems to create much more verbose script. Explore if there are options to condense, otherwise existing ggplot figures will be extremely lengthy if migrated over - providers (Appsilon, ThinkR) &amp; community support</p>
 </section>
 </section>
 </section>
@@ -1299,15 +1361,15 @@ refactoring requires us to be able to ensure that behavior remains identical at 
 <h3 data-number="9.4.1" class="anchored" data-anchor-id="misc.-heap-of-code"><span class="header-section-number">9.4.1</span> Misc. heap of code</h3>
 <p>Find main package list + versions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(head</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>      (tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Package =</span> <span class="fu">names</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>]),</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Version =</span> <span class="fu">unname</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>])</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>      ), <span class="at">n=</span><span class="dv">600</span> <span class="co">#where n = an appropriately large value to capture all your packages</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(head</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>      (tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Package =</span> <span class="fu">names</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>]),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Version =</span> <span class="fu">unname</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>])</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      ), <span class="at">n=</span><span class="dv">600</span> <span class="co">#where n = an appropriately large value to capture all your packages</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Error in readRDS(file) : unknown input format
 Error in readRDS(file) : unknown input format
@@ -1327,7 +1389,7 @@ Error in readRDS(file) : unknown input format
 # ℹ 408 more rows</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd</span> //c tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd</span> //c tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 </section>

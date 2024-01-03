@@ -722,33 +722,47 @@ The QAQC workflow aligns with the QMS SOP and the participants ToR into a Shiny 
 ## Usage Scenarios
 The version control for this application is in https://github.com/InterlabsOCWA/std_curve   
 Development occurs in two branches, the main differentiator being the presence of the database.  
-### web branch
+### web branch  
 for quick usage, has "debug" file (which loads in a specific Rey round filled template for testing)
-### db branch
+### db branch  
+*insert presentation slides here?*  
 
 ## Future Framework Migration Research & Reflect
 The future intention is for the interlabs QAQC app to be available to participating labs, thereby separating potential role conflicts for the screening interlab staff (who should not be correcting submittals).  This utility app may be need to be built in tandem the main interlab website.  
 
-A September 2023 successful Shiny-based regulatory [submission](https://pharmaverse.github.io/blog/posts/2023-08-14_rhino_submission_2/rhino_submission_2.html) to the FDA can be considered a litmus test of recognition for the use of Shiny in compliance work requiring statistical review and evaluation. 
+A September 2023 successful Shiny-based regulatory [submission](https://pharmaverse.github.io/blog/posts/2023-08-14_rhino_submission_2/rhino_submission_2.html) to the FDA can be considered a litmus test of recognition for the use of R & Shiny-built apps in compliance work requiring statistical review and evaluation. 
 
-The current QAQC app is built with flexdashboard with Shiny to allow for reactive elements.  The advantage is there is no separated ui and server files, allowing time to be focused on building functionality rather than building a shiny app.  However, in consideration of expansion with other website functions (e.g. user authentication, payment, multi-page navigation), it is unlikely the flexdashboard can support future needs.  
+The current QAQC app is built using flexdashboard with Shiny reactive elements.  The advantage is there is a "single source of truth" i.e. no separated ui & server, front & backend files.  This allows time to be focused on building functionality rather than app-building and synchronizing variables/functions across front and back-end file sets.  However, in consideration of expansion with other website functions (e.g. user authentication, payment, multi-page navigation, routing), it is unlikely the flexdashboard can support future needs.  
 
 Furthermore, future staff slated to support the expansion is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices.  A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.
 
 ### Available Framework options
-The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by [R-bloggers](https://appsilon.com/rhino-vs-golem-vs-leprechaun/)).  
-
-Leprechaun is not further evaluated as it does not have a built-in testing framework, which is desirable for our use.  However, it does not add extraneous (and itself) as dependency, which is advantages for the size and fragility of applications.  It may be worthwhile exploring at a future date.
+The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by [G.Kenneth for Appsilon](https://appsilon.com/rhino-vs-golem-vs-leprechaun/)).  
+  
 ![available frameworks](https://wordpress.appsilon.com/wp-content/uploads/2023/11/Rhino_v_Golem_V_Lepre.webp)
+**Image source: [Appsilon](https://appsilon.com/rhino-vs-golem-vs-leprechaun/)**
 
-Rhino is the "new kid on the block", having been released by Appsilon early 2022. It is underpinned by the Box package.  Golem, released by ThinkR, is the more established framework, running under 
+Leprechaun is not further evaluated as it does not have a built-in testing framework, which is desirable for our use.  Different from the other two options, it does not add extraneous (including itself) as a dependency, which is advantageous for the size and fragility of applications.  It may be worthwhile exploring at a second pass.
 
-Both Rhino and Golem are accompanied by their respective "universe" of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking.  The availability of these tools would be very helpful for the development of the interlabs app and hence, these two frameworks were evaluated further.
+Rhino is the "new kid on the block", having been released by Appsilon early 2022. It is underpinned by the Box package.  Golem, released by ThinkR, is the more established framework, running under the paradigm of package creation, including the associated rigourous testing procedures.
+
+Both Rhino and Golem are accompanied by their respective "universe" of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking.  The availability of these tools would be very helpful for the development of the interlabs QAQC app and hence, these two frameworks were evaluated further.
 
 #### At-first-glance
  
 **Folder structure** : Both frameworks emphasize modularity in construction.  Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories.  Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files.  A further R directory contains its UI, server and modularized logic operations R files.
-The folder structure organization are follows, respectively for the Rhino and Golem.
+The folder structure organization are follows:  
+  
+Golem folder structure
+```
+golemappy
+├───dev
+├───inst
+│   └───app
+│       └───www
+├───man
+└───R
+```
   
 Rhino app folder structure  
 ```
@@ -773,33 +787,24 @@ Rhinoappy
     │   └───integration
     └───testthat
 ```    
-  
-Golem folder structure
-```
-golemappy
-├───dev
-├───inst
-│   └───app
-│       └───www
-├───man
-└───R
-```
+Alternatively, Rhino exclusive of its E2E tests and config settings, conceptually broken down:  
+![Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*nMDRb0pu3uvCTalCYY_Lkw.png)
+Source: ["How to make a cheatsheet for Rhino" (Kim, J.) ](https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e)
 
-**Dependency management** : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used.  At deployment though, it still requires packrat.  Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.  
 
-**Learning Curve & guidance** : Both frameworks have good documentation.  However (as described in detail in next section's time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along within the script.  Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app).  It is necessary to working with the docs open by its side.  Just by the sheer extent of the default template folder structure, it takes more time to figure out and update all the corresponding elements.  Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering perspective.
+**Dependency management** : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used.  At deployment though, it still requires packrat.  Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.
 
-**How to render (in developement)** 
-Rhino is simpler in this aspect, requiring a single console command.  Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.
+**Learning Curve & guidance** : Both frameworks have good documentation.  However (as described in detail in next section's time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along just within the script.  Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app).  It is necessary to working with the docs open by its side.  Just by the sheer extent of the default template folder structure, it is likely to take more time to figure out and update all the corresponding elements.  Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering background.  
 
-**What is exciting**
-The testing structure provided in both frameworks is a key attractor.  Unit testing for both appears to be the same, based on Hadley's testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not.  Rhino's other selling point is integrated github CI which includes e.g. linting.
-Rhino
+**How to render (in development) & How to deploy** 
+Rhino is simpler in this aspect, requiring a single console command.  Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.  
+
+Rhino render command  
 ```
 shiny::runApp()
 ```
 
-Golem
+Golem render command
 ```
 # Detach all loaded packages and clean your environment
 golem::detach_all_attached()
@@ -810,17 +815,73 @@ golem::document_and_reload()
 golem::run_dev()
 ```
 
-**Common concepts** namespace, modularization
+Both are deployed using from the app.R in their main directory, which allows the use of the "publish" shortcut in the RStudio IDE.  Golem's deploy step R file provides testing commands that should be & are easily run pre-deployment with clear console report-out on test results.  
+
+Rhino deploy command
+```
+# Rhino / shinyApp entrypoint. Do not edit.
+rhino::app()
+```
+  
+Golem deploy command (many options provided...just used the test portion then IDE shortcut)
+```
+# Test your app
+
+## Run checks ----
+## Check the package before sending to prod
+devtools::check()
+rhub::check_for_cran()
+
+# Deploy
+
+## Local, CRAN or Package Manager ----
+## This will build a tar.gz that can be installed locally,
+## sent to CRAN, or to a package manager
+devtools::build()
+
+## RStudio ----
+## If you want to deploy on RStudio related platforms
+golem::add_rstudioconnect_file()
+golem::add_shinyappsio_file()
+golem::add_shinyserver_file()
+
+## Docker ----
+## If you want to deploy via a generic Dockerfile
+golem::add_dockerfile_with_renv()
+
+## If you want to deploy to ShinyProxy
+golem::add_dockerfile_with_renv_shinyproxy()
 
 
+# Deploy to Posit Connect or ShinyApps.io
+# In command line.
+rsconnect::deployApp(
+  appName = desc::desc_get_field("Package"),
+  appTitle = desc::desc_get_field("Package"),
+  appFiles = c(
+    # Add any additional files unique to your app here.
+    "R/",
+    "inst/",
+    "data/",
+    "NAMESPACE",
+    "DESCRIPTION",
+    "app.R"
+  ),
+  appId = rsconnect::deployments(".")$appID,
+  lint = FALSE,
+  forceUpdate = TRUE
+)
+```
 
-![Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*nMDRb0pu3uvCTalCYY_Lkw.png)
-Source: ["How to make a cheatsheet for Rhino" (Kim, J.) ](https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e)
 
 #### Rhino vs. Golem
-In discussion of these frameworks with a mentor (not fluent in R), a take-away advice was to check the number of downloads - e.g. in the frameworks the mentor would advise for python (flask), downloads would be in the millions.
+In discussion of how to approach exploring these frameworks with a mentor (not fluent in R), one advice was to check the number of downloads which is indicative of uptake and available community support - e.g. in the frameworks the mentor would advise for python (flask), downloads would be in the millions.  Official downloads counts of Rhino and Golem are available from CRAN.  
 
-A roughly^ 1-hr time-boxed trial was conducted in both frameworks to "wet the toes".  The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (see how to add a second modular feature)
+A roughly^ 1-hour time-boxed trial was conducted in both frameworks to "wet the toes".  The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (to see how to add a second module).  The build was done on a Windows laptop, R 4.3.2, RStudio as IDE, with Node v.16 (required for Rhino).  As a stretch step beyond the timebox, an existing Shinyapps.io account was used for deployment.  Datasets used are the publicly available CRAN downloads count, R's in-the-box iris test data (and Rhino's similar test rhinos test until I figured out how to import iris into Rhino).
+
+Rendered results are as follows, with Golem on left and Rhino on right (missing its title as Rhino requires a box::use call to be even able to add a h1 heading which was figured out after the 1-hour limit).  Both plots for Rhino were made post the 1-hour timebox due to not understanding the package call syntax (which meant both datasets and ggplot failed to work).  The top plots were rendered using iris dataset, in base R for Golem and ggplot (used it as a step to figure the syntax) for Rhino, respectively.  Bottom plots were the CRAN downloads data plotted using ggplot (much higher downloads for older and well-established Golem!)
+
+![rendered apps - golem on left, Rhino on right](src/framework_rendered.png)
 
 **overall impressions**  
   
@@ -835,6 +896,21 @@ A roughly^ 1-hr time-boxed trial was conducted in both frameworks to "wet the to
 | Mental effort, open files                       | 5 (ui, server, 1st graph module, 2nd graph module, run_dev). ui & server files are separate (and of course the modules) so there is a bit of flipping back and forth to ensure the correct modules aspects are called between files.  There are useful auto-generated scripts that comes with generated modules directing copy-this-to-ui & copy-that-to-server | 3 (main.R, 1st graph module, 2nd graph module) for this simple use, a single main.R file holds both ui and server scripts so there is one less open file to juggle.                                                                                                                                                                                                                    |
 | Size (pre-deployment, completed with two plots) | 140 KB, 60 files, 27 folders.  The renv is substantially lighter containing no actual libraries, only a json settings record of library versions                                                                                                                                                                                                                | 3.82 MB, 134 files, 49 folders.  More than half of which (2.40 MB, 83 files, 18 folders) due to the renv holding actual libraries scripts (only two "used" were explicitly called in code, but all their sub-libraries are included)                                                                                                                                                   |
 | Deployment                                      | Workflow required test process (~5 minutes) and with clear reports on asserts pass/fail.  Deployment to shinyapps.io straightforward using IDE shortcut.  Failing functions namespace (seems to be library in local vs. global namespace) so deployment did not render plots.                                                                                                | No "shepherding" to pre-deployment testing but deployment successful.  Deployment to shinyapps.io straightforward using IDE shortcut.                                                                                                                                                                                                                                                  |
+
+The result of the deployment stretch goal is shown below, with Golem on left, Rhino on right.  Golem's included pre-deployment tests had several warnings about packages not being in the global environment. Hence its deployment is certainly mea culpa (lack of understanding of namespacing?) and not due to the framework, which did kindly & rather clearly gave specific warnings.  Rhino, on the other hand, did even render until the syntax issues were resolved - and when it deployed, it was WYSIWYG from the render. 
+![deployed apps - golem on left, Rhino on right](src/framework_deployed.png)
+
+**What is exciting**
+The testing structure provided in both frameworks is a key attractor.  Unit testing for both appears to be the same, based on Hadley's testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not.  Golem's included unit tests pre-deployment is excellent.  Rhino's other selling point is integrated github CI which includes e.g. linting.
+
+**Common concepts to take-away and potential challenges explore further** 
+- namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces 
+- allowance for performative coding e.g. Do proxy update using just client-side based on key events to avoid server calls  
+- Rhino requires Node js > version 12.  Are there conflicts between Rhino and different post-12 versions of node js?  friction points with react (or okay as long as you use Rhino's own react package)
+- Rhino's specificity and use of box seems to create much more verbose script.  Explore if there are options to condense, otherwise existing ggplot figures will be extremely lengthy if migrated over
+- providers (Appsilon, ThinkR) & community support 
+
+
 
 # References
 
