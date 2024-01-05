@@ -258,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cd4041645c8ae97c5fa7" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-cd4041645c8ae97c5fa7">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-538ebf3de96acb04f99f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-538ebf3de96acb04f99f">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1118,7 +1118,12 @@ for quick usage, has “debug” file (which loads in a specific Rey round fille
 │   └───app
 │       └───www
 ├───man
-└───R</code></pre>
+├───R
+├───renv
+│   └───staging
+└───rsconnect
+    └───shinyapps.io
+        └───interlabs</code></pre>
 <p>Rhino app folder structure</p>
 <pre><code>Rhinoappy
 ├───.github
@@ -1144,6 +1149,12 @@ for quick usage, has “debug” file (which loads in a specific Rey round fille
 <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*nMDRb0pu3uvCTalCYY_Lkw.png" class="img-fluid" alt="Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim"> Source: <a href="https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e">“How to make a cheatsheet for Rhino” (Kim, J.)</a></p>
 <p><strong>Dependency management</strong> : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used. At deployment though, it still requires packrat. Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.</p>
 <p><strong>Learning Curve &amp; guidance</strong> : Both frameworks have good documentation. However (as described in detail in next section’s time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along just within the script. Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app). It is necessary to working with the docs open by its side. Just by the sheer extent of the default template folder structure, it is likely to take more time to figure out and update all the corresponding elements. Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering background.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="src/framework_scripts.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">guidance in script during dev - golem on left, Rhino on right</figcaption><p></p>
+</figure>
+</div>
 <p><strong>How to render (in development) &amp; How to deploy</strong> Rhino is simpler in this aspect, requiring a single console command. Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.</p>
 <p>Rhino render command</p>
 <pre><code>shiny::runApp()</code></pre>

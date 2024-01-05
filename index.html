@@ -73,6 +73,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="InterlabsCodeGuidance_files/libs/sankey-1/sankey.js"></script>
 <script src="InterlabsCodeGuidance_files/libs/sankeyNetwork-binding-0.4/sankeyNetwork.js"></script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -98,6 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#package-dependencies" id="toc-package-dependencies" class="nav-link" data-scroll-target="#package-dependencies"><span class="header-section-number">2.2.1</span> Package Dependencies</a></li>
   </ul></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python"><span class="header-section-number">2.3</span> Python</a></li>
+  <li><a href="#postgres-sql-database-subject-to-change" id="toc-postgres-sql-database-subject-to-change" class="nav-link" data-scroll-target="#postgres-sql-database-subject-to-change"><span class="header-section-number">2.4</span> Postgres SQL database (subject to change)</a></li>
   </ul></li>
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control"><span class="header-section-number">3</span> Version Control</a>
   <ul class="collapse">
@@ -123,18 +140,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#table-3---milestone-deliverables-tentative-schedule" id="toc-table-3---milestone-deliverables-tentative-schedule" class="nav-link" data-scroll-target="#table-3---milestone-deliverables-tentative-schedule"><span class="header-section-number">6.2.1</span> Table 3 - Milestone Deliverables &amp; Tentative Schedule</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
-  <li><a href="#appendixreference-extracts" id="toc-appendixreference-extracts" class="nav-link" data-scroll-target="#appendixreference-extracts"><span class="header-section-number">8</span> Appendix/Reference Extracts</a>
+  <li><a href="#interactive-qaqc-app" id="toc-interactive-qaqc-app" class="nav-link" data-scroll-target="#interactive-qaqc-app"><span class="header-section-number">7</span> Interactive QAQC App</a>
   <ul class="collapse">
-  <li><a href="#dark-modelight-mode-technique" id="toc-dark-modelight-mode-technique" class="nav-link" data-scroll-target="#dark-modelight-mode-technique"><span class="header-section-number">8.1</span> Dark Mode/Light Mode Technique</a></li>
-  <li><a href="#typical-code-issues-correspondent-refactoring" id="toc-typical-code-issues-correspondent-refactoring" class="nav-link" data-scroll-target="#typical-code-issues-correspondent-refactoring"><span class="header-section-number">8.2</span> Typical Code Issues &amp; Correspondent Refactoring</a>
+  <li><a href="#usage-scenarios" id="toc-usage-scenarios" class="nav-link" data-scroll-target="#usage-scenarios"><span class="header-section-number">7.1</span> Usage Scenarios</a></li>
+  <li><a href="#future-framework-migration-research-reflect" id="toc-future-framework-migration-research-reflect" class="nav-link" data-scroll-target="#future-framework-migration-research-reflect"><span class="header-section-number">7.2</span> Future Framework Migration Research &amp; Reflect</a>
   <ul class="collapse">
-  <li><a href="#refactoring-methods" id="toc-refactoring-methods" class="nav-link" data-scroll-target="#refactoring-methods"><span class="header-section-number">8.2.1</span> Refactoring methods</a></li>
+  <li><a href="#available-framework-options" id="toc-available-framework-options" class="nav-link" data-scroll-target="#available-framework-options"><span class="header-section-number">7.2.1</span> Available Framework options</a></li>
   </ul></li>
-  <li><a href="#handling-commented-out-code" id="toc-handling-commented-out-code" class="nav-link" data-scroll-target="#handling-commented-out-code"><span class="header-section-number">8.3</span> Handling Commented-out code</a></li>
-  <li><a href="#unit-testing-notes" id="toc-unit-testing-notes" class="nav-link" data-scroll-target="#unit-testing-notes"><span class="header-section-number">8.4</span> Unit testing notes</a>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
+  <li><a href="#appendixreference-extracts" id="toc-appendixreference-extracts" class="nav-link" data-scroll-target="#appendixreference-extracts"><span class="header-section-number">9</span> Appendix/Reference Extracts</a>
   <ul class="collapse">
-  <li><a href="#misc.-heap-of-code" id="toc-misc.-heap-of-code" class="nav-link" data-scroll-target="#misc.-heap-of-code"><span class="header-section-number">8.4.1</span> Misc. heap of code</a></li>
+  <li><a href="#dark-modelight-mode-technique" id="toc-dark-modelight-mode-technique" class="nav-link" data-scroll-target="#dark-modelight-mode-technique"><span class="header-section-number">9.1</span> Dark Mode/Light Mode Technique</a></li>
+  <li><a href="#typical-code-issues-correspondent-refactoring" id="toc-typical-code-issues-correspondent-refactoring" class="nav-link" data-scroll-target="#typical-code-issues-correspondent-refactoring"><span class="header-section-number">9.2</span> Typical Code Issues &amp; Correspondent Refactoring</a>
+  <ul class="collapse">
+  <li><a href="#refactoring-methods" id="toc-refactoring-methods" class="nav-link" data-scroll-target="#refactoring-methods"><span class="header-section-number">9.2.1</span> Refactoring methods</a></li>
+  </ul></li>
+  <li><a href="#handling-commented-out-code" id="toc-handling-commented-out-code" class="nav-link" data-scroll-target="#handling-commented-out-code"><span class="header-section-number">9.3</span> Handling Commented-out code</a></li>
+  <li><a href="#unit-testing-notes" id="toc-unit-testing-notes" class="nav-link" data-scroll-target="#unit-testing-notes"><span class="header-section-number">9.4</span> Unit testing notes</a>
+  <ul class="collapse">
+  <li><a href="#misc.-heap-of-code" id="toc-misc.-heap-of-code" class="nav-link" data-scroll-target="#misc.-heap-of-code"><span class="header-section-number">9.4.1</span> Misc. heap of code</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -233,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a106c4adc95b2439d431" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-a106c4adc95b2439d431">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-538ebf3de96acb04f99f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-538ebf3de96acb04f99f">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -417,19 +442,74 @@ When renv’s Python integration is active, a couple extra features will activat
 </div>
 </div>
 </section>
+<section id="postgres-sql-database-subject-to-change" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="postgres-sql-database-subject-to-change"><span class="header-section-number">2.4</span> Postgres SQL database (subject to change)</h2>
+<ol type="1">
+<li>Download the <a href="https://www.enterprisedb.com/download-postgresql-binaries">zip package</a> from <a href="https://www.postgresql.org/download/windows/">PostgresSQL</a>. <strong>The installer version requires admin rights, hence use zip</strong><br>
+</li>
+<li>Unzip in a directory where you have read/write rights.<br>
+</li>
+<li>To allow for command line control - in windows menu, search for “Edit the environment variables” and edit in the Variable “Path”to include the bin directory of where you have unzipped postgres, e.g.&nbsp;“C:\Users\hoja\Downloads\postgresql-16.0-1-windows-x64-binaries\pgsql\bin”</li>
+<li><a href="https://www.geeksforgeeks.org/postgresql-installing-postgresql-without-admin-rights-on-windows/">Create the database</a> and associate with user. the user running this command must have full read/write privileges on the directory. they select for this. First create the folder where you want the database stored, then use its path in the below command.</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">initdb</span> <span class="at">-D</span> C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data <span class="at">-U</span> postgres <span class="at">-E</span> UTF8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>-U postgres creates the superuser as postgres</li>
+<li>-E UTF8 will create the database with UTF-8 encoding</li>
+</ul>
+<ol start="5" type="1">
+<li>To start Postgres server, use the below command adapting the path to where you’ve previously set as database storage above:</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pg_ctl</span> <span class="at">-D</span> C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data <span class="at">-l</span> logfile start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The command line should then respond with “waiting for server to start…..done. Server started” To then access the database using command line, follow step 6. To access using pgAdmin, follow step 7.</p>
+<ol start="6" type="1">
+<li>Access client using</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> postgres</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">sh</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> connect to the interlab database you created <span class="at">-</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>sh</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">postgres#=</span> <span class="dt">\c</span> interlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You may encounter the <a href="https://stackoverflow.com/questions/26441873/starting-postgresql-and-pgadmin-in-windows-without-installation">following error</a> while starting psql.exe:</p>
+<p>“psql: FATAL : role [user] does not exist.</p>
+<p>To resolve this,<br>
+i. Be on the same folder path (where you have initdb.exe) i.e.&nbsp;“source-folder/pgsql/bin” ii. Run the following to login as user “interlab” which has been assigned superuser privileges for the “interlab database”. If not accessing the interlab database, login as general superuser -U postgres.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> interlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="i">
+<li>if prompted, the password is the same as the user name</li>
+</ol>
+<p>Upon successful start up, the command line prompt should change to “database_name=#” as seen at the bottom of next figure, i.e.&nbsp;interlab=# if logging into the interlab database. SQL commands can be</p>
+<ol start="4" type="i">
+<li><img src="img/cli-postgres.png" class="img-fluid" alt="Top - initial setup, Bottom - routine entering postgres"></li>
+</ol>
+<p>To exit, use the “\q” or “\quit” commands, and “CTRL + C”, “CTRL + D”, or “CTRL + Z” shortcut keys</p>
+<ol start="7" type="1">
+<li><p>Locate the “pgAdmin” then “runtime” folder of your unzipped postgres and execute pgAdmin.exe. Under File &gt; Preferences set up the connection to where your psql bin folder is (per the hint in gray on pgAdmin4) <a href="img/pg-pgadmin-connect.png"></a></p></li>
+<li><p>Add new server - name it as “localhost” in the General tab. For Connection, also provide “localhost” as the host name. User, password, and role can all be set to “interlab”.</p></li>
+<li><p>In command prompt, enter the following to give user interlab SUPERUSER privileges (on par with user postgres) -&gt; this will allow user to view and edit tables on the pgAdmin GUI.<br>
+</p></li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ALTER</span> USER interlab WITH SUPERUSER<span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To confirm the user has new privileges, enter</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">\du</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="10" type="1">
+<li>In pgAdmin, right click on localhost in the Objects Explorer panel to the left of the GUI and click refresh if needed to update.</li>
+</ol>
+</section>
 </section>
 <section id="version-control" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Version Control</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Yuhan's section</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">#### II. Training/Establishing Guidelines</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Acquire training on and establish version control on Github *(2 weeks/July 2023)* *Deliverable: Training/Guidance document section, specifically method for &amp; train team as soon as possible on version control/change management**\</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">### III. Preparatory Version Control &amp; Unit Tests</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Establish version control on Github. All team members to abide by training guidelines when introducing changes to main code base *(2 weeks/July 2023)*\</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    **Deliverable: Version control workflow graphic (to incl. in Training/Guidance document)**\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Yuhan's section</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">#### II. Training/Establishing Guidelines</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Acquire training on and establish version control on Github *(2 weeks/July 2023)* *Deliverable: Training/Guidance document section, specifically method for &amp; train team as soon as possible on version control/change management**\</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">### III. Preparatory Version Control &amp; Unit Tests</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Establish version control on Github. All team members to abide by training guidelines when introducing changes to main code base *(2 weeks/July 2023)*\</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    **Deliverable: Version control workflow graphic (to incl. in Training/Guidance document)**\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Generic information is provided in this section, with interlabs specific practice at the next section. If you need to run any of the steps in this section, it is recommended to do so in consultation with the team (e.g.&nbsp;adding a new branch, new repository). Otherwise you should only need to follow the <a href="#vc-project-workflow">project specific version control steps</a> for typical work.</p>
 <section id="installation-and-setup" class="level2" data-number="3.1">
@@ -480,11 +560,11 @@ Note
 </div>
 <p><em>Connect to Git, GitHub and RStudio</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I would suggest that we don't need to give information on setting up new repository or branches in this doc (besides a general reference link) because we don't want people starting random repository/branches different from what you set up.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># instead can you walk through git clone process which Alex &amp; Chris will need to use?  </span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if they git clone do they need to set up connection in RStudio (or command line)?  if not then the current connection step can be moved away alongside making new repositories and branches</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># need a brief paragraph on rollback - how to use old commit hash to bring back an older version if a new commit has severe issues</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I would suggest that we don't need to give information on setting up new repository or branches in this doc (besides a general reference link) because we don't want people starting random repository/branches different from what you set up.</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># instead can you walk through git clone process which Alex &amp; Chris will need to use?  </span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if they git clone do they need to set up connection in RStudio (or command line)?  if not then the current connection step can be moved away alongside making new repositories and branches</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># need a brief paragraph on rollback - how to use old commit hash to bring back an older version if a new commit has severe issues</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>5. Setup a new remote repository in GitHub</strong><br>
 A new repository may be set up for discrete projects. (For the most part, we will be working in the base code repository at https://github.com/InterlabsOCWA/base_code) <img src="src/SetRepo.gif" class="img-fluid" alt="repo"></p>
@@ -578,7 +658,7 @@ Note
 <ul>
 <li><p>Add a commit message and click on <strong>Commit</strong> in this window. Every time make a commit, must also write a short <strong>commit message</strong>.</p></li>
 <li><p>You can view the history of your commit after click the left corner <strong>History</strong> beside the change. You can also view the commit history in other Git client app. Or check your past commits though type <code>git log</code> in terminal.</p></li>
-<li><p>Check on the state of the Git world: type <code>git status</code> in terminal</p></li>
+<li><p>Check on the state of the Git world: type “git status” in terminal</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -659,15 +739,15 @@ Automatic merge failed; fix conflicts and then commit the result.'
 <section id="vc-project-workflow" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="vc-project-workflow"><span class="header-section-number">3.3</span> Version control project workflow</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#- need the graphic cleaned up so it makes sense to a regular reader like Alex - e.g. what does it mean CA will mainly work here?  next round could be you or I, need the description for the task not a person</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># what is JIRA-35 example feature?  can you change this example to match something we might see in interlabs.  also use our naming convention which applies to branches as well (so the double dash and space are not acceptable)</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom comment - "feel free [...]" can you add the note about how the feature or develop branch gets merged?  It's a note to yourself (I think) so don't leave it for the reader)</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#TBD</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># explain bare min. information you need with commit message like you started with the annotation under the round dots.  Initial name is probably the least important info in the commit since git would track who pushed the change anyways?  not sure</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># explain how each dot is a commit like a save point we can revert to by knowing the commit hash e.g. commit ba9da59 </span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># I moved the home folder description up right beneath the diagram.  We need a description of the normal working "place" (the git clone local - you mentioned in the general set up for setting up a new repository but can you add description of how it would be like for our project base code?  especially with branches - does the user need to git clone each branch into a separate folder, or can they switch after git cloning the main?  this needs to be very clear assuming the reader is a new student , for example).  How often are we to sync/commit to github from local?  Then, back to the network folder home locations - how often are these to be "synced" with the github versions?  Decide on a frequency and that will become part of the QMS requirement for data management.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#- need the graphic cleaned up so it makes sense to a regular reader like Alex - e.g. what does it mean CA will mainly work here?  next round could be you or I, need the description for the task not a person</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># what is JIRA-35 example feature?  can you change this example to match something we might see in interlabs.  also use our naming convention which applies to branches as well (so the double dash and space are not acceptable)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom comment - "feel free [...]" can you add the note about how the feature or develop branch gets merged?  It's a note to yourself (I think) so don't leave it for the reader)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#TBD</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># explain bare min. information you need with commit message like you started with the annotation under the round dots.  Initial name is probably the least important info in the commit since git would track who pushed the change anyways?  not sure</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># explain how each dot is a commit like a save point we can revert to by knowing the commit hash e.g. commit ba9da59 </span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># I moved the home folder description up right beneath the diagram.  We need a description of the normal working "place" (the git clone local - you mentioned in the general set up for setting up a new repository but can you add description of how it would be like for our project base code?  especially with branches - does the user need to git clone each branch into a separate folder, or can they switch after git cloning the main?  this needs to be very clear assuming the reader is a new student , for example).  How often are we to sync/commit to github from local?  Then, back to the network folder home locations - how often are these to be "synced" with the github versions?  Decide on a frequency and that will become part of the QMS requirement for data management.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>The overall workflow graph of version control</strong></p>
 <p>The diagram below shows the overall version control workflow for each round.</p>
@@ -809,8 +889,8 @@ Where Branch = <em>branch name</em> e.g.&nbsp;should primarily develop unless yo
 <p><em>lintr</em>:<br>
 lintr package will be set up with the main code to provide diagnostic linting (i.e.&nbsp;as opposed to auto-correction using stylr package), recommending but not enforcing stylistic changes. It will activate with github upload workflows following this set up command, which also creates a <strong>.github/workflows</strong> folder with <strong>lint.yaml</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_github_action</span>(<span class="st">"lint"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for context, check in console - vignette("continuous-integration")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_github_action</span>(<span class="st">"lint"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for context, check in console - vignette("continuous-integration")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once lintr is installed, it can be accessed in RStudio. In order to see the diagnostic results, first enable the “Markers” pane by &gt; “Tools” &gt; “Global Options…” &gt; go to “Code” on the left-hand-side &gt; “Diagnostics” tab &gt; check “Show diagnostics for R”. The Markers pane will then be available tabbed next to Console/Terminal/Background Jobs to display lint results.</p>
 <p>To run lintr, open Tools &gt; Addins. From the pop-up window, select lintr from the addin’s list and execute on the open code file.<br>
@@ -1003,8 +1083,230 @@ lintr package will be set up with the main code to provide diagnostic linting (i
 </section>
 </section>
 </section>
-<section id="references" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<section id="interactive-qaqc-app" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Interactive QAQC App</h1>
+<p>An upstream QAQC workflow was duplicated and separated out from the base code, as the process can lead to requests-to-amend or rejection of lab submittals (and consequently a hard “stop” to running the base code so the problematic submittal can be temporarily excluded).</p>
+<p>The QAQC workflow aligns with the QMS SOP and the participants ToR into a Shiny app that allows the analyst to singly screen each submittal with visual aid. Submittals are also optionally collated into a PostgresSQL database for future use.</p>
+<section id="usage-scenarios" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="usage-scenarios"><span class="header-section-number">7.1</span> Usage Scenarios</h2>
+<p>The version control for this application is in https://github.com/InterlabsOCWA/std_curve<br>
+Development occurs in two branches, the main differentiator being the presence of the database.<br>
+### web branch<br>
+for quick usage, has “debug” file (which loads in a specific Rey round filled template for testing) ### db branch<br>
+<em>insert presentation slides here?</em></p>
+</section>
+<section id="future-framework-migration-research-reflect" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="future-framework-migration-research-reflect"><span class="header-section-number">7.2</span> Future Framework Migration Research &amp; Reflect</h2>
+<p>The future intention is for the interlabs QAQC app to be available to participating labs, thereby separating potential role conflicts for the screening interlab staff (who should not be correcting submittals). This utility app may be need to be built in tandem the main interlab website.</p>
+<p>A September 2023 successful Shiny-based regulatory <a href="https://pharmaverse.github.io/blog/posts/2023-08-14_rhino_submission_2/rhino_submission_2.html">submission</a> to the FDA can be considered a litmus test of recognition for the use of R &amp; Shiny-built apps in compliance work requiring statistical review and evaluation.</p>
+<p>The current QAQC app is built using flexdashboard with Shiny reactive elements. The advantage is there is a “single source of truth” i.e.&nbsp;no separated ui &amp; server, front &amp; backend files. This allows time to be focused on building functionality rather than app-building and synchronizing variables/functions across front and back-end file sets. However, in consideration of expansion with other website functions (e.g.&nbsp;user authentication, payment, multi-page navigation, routing), it is unlikely the flexdashboard can support future needs.</p>
+<p>Furthermore, future staff slated to support the expansion is expected to have a full-stack dev background - hence the code needs to move towards more formal organization in alignment with typical full stack practices. A pre-packed framework rather than our current dashboard/configuration using individually curated packages may be more conducive for maintenance.</p>
+<section id="available-framework-options" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="available-framework-options"><span class="header-section-number">7.2.1</span> Available Framework options</h3>
+<p>The most prominent R Shiny packages for providing a opiniated framework for full stack Shiny apps are Rhino, Golem, and Leprechaun (as reviewed by <a href="https://appsilon.com/rhino-vs-golem-vs-leprechaun/">G.Kenneth for Appsilon</a>).</p>
+<p><img src="https://wordpress.appsilon.com/wp-content/uploads/2023/11/Rhino_v_Golem_V_Lepre.webp" class="img-fluid" alt="available frameworks"> <strong>Image source: <a href="https://appsilon.com/rhino-vs-golem-vs-leprechaun/">Appsilon</a></strong></p>
+<p>Leprechaun is not further evaluated as it does not have a built-in testing framework, which is desirable for our use. Different from the other two options, it does not add extraneous (including itself) as a dependency, which is advantageous for the size and fragility of applications. It may be worthwhile exploring at a second pass.</p>
+<p>Rhino is the “new kid on the block”, having been released by Appsilon early 2022. It is underpinned by the Box package. Golem, released by ThinkR, is the more established framework, running under the paradigm of package creation, including the associated rigourous testing procedures.</p>
+<p>Both Rhino and Golem are accompanied by their respective “universe” of supporting packages which facilitate shiny use for production, such as React and Docker enablement, state management, benchmarking. The availability of these tools would be very helpful for the development of the interlabs QAQC app and hence, these two frameworks were evaluated further.</p>
+<section id="at-first-glance" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="at-first-glance"><span class="header-section-number">7.2.1.1</span> At-first-glance</h4>
+<p><strong>Folder structure</strong> : Both frameworks emphasize modularity in construction. Rhino is reminiscent of a JS or Python flask framework with separate views, styles, testing directories. Golem is reminiscent of R package development, being more simply separated essentially by workflow or roadmap within the key dev folder: configuration, development and deployment file-creation R files. A further R directory contains its UI, server and modularized logic operations R files. The folder structure organization are follows:</p>
+<p>Golem folder structure</p>
+<pre><code>golemappy
+├───dev
+├───inst
+│   └───app
+│       └───www
+├───man
+├───R
+├───renv
+│   └───staging
+└───rsconnect
+    └───shinyapps.io
+        └───interlabs</code></pre>
+<p>Rhino app folder structure</p>
+<pre><code>Rhinoappy
+├───.github
+│   └───workflows
+├───app
+│   ├───js
+│   ├───logic
+│   ├───static
+│   ├───styles
+│   └───view
+├───renv
+│   ├───library
+│   │   └───R-4.2
+│   │       └───x86_64-w64-mingw32
+│   │           ├───(various packages)
+│   │                   └───files
+│   └───staging
+└───tests
+    ├───cypress
+    │   └───integration
+    └───testthat</code></pre>
+<p>Alternatively, Rhino exclusive of its E2E tests and config settings, conceptually broken down:<br>
+<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*nMDRb0pu3uvCTalCYY_Lkw.png" class="img-fluid" alt="Rhino, exclusive of its E2E tests and config settings, as conceptually broken down by Jinhwan Kim"> Source: <a href="https://jhk0530.medium.com/how-to-make-cheatsheet-for-r-package-rhino-5cdfa22c308e">“How to make a cheatsheet for Rhino” (Kim, J.)</a></p>
+<p><strong>Dependency management</strong> : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used. At deployment though, it still requires packrat. Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.</p>
+<p><strong>Learning Curve &amp; guidance</strong> : Both frameworks have good documentation. However (as described in detail in next section’s time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along just within the script. Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app). It is necessary to working with the docs open by its side. Just by the sheer extent of the default template folder structure, it is likely to take more time to figure out and update all the corresponding elements. Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering background.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="src/framework_scripts.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">guidance in script during dev - golem on left, Rhino on right</figcaption><p></p>
+</figure>
+</div>
+<p><strong>How to render (in development) &amp; How to deploy</strong> Rhino is simpler in this aspect, requiring a single console command. Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.</p>
+<p>Rhino render command</p>
+<pre><code>shiny::runApp()</code></pre>
+<p>Golem render command</p>
+<pre><code># Detach all loaded packages and clean your environment
+golem::detach_all_attached()
+# rm(list=ls(all.names = TRUE))
+
+# Document and reload your package
+golem::document_and_reload()
+golem::run_dev()</code></pre>
+<p>Both are deployed using from the app.R in their main directory, which allows the use of the “publish” shortcut in the RStudio IDE. Golem’s deploy step R file provides testing commands that should be &amp; are easily run pre-deployment with clear console report-out on test results.</p>
+<p>Rhino deploy command</p>
+<pre><code># Rhino / shinyApp entrypoint. Do not edit.
+rhino::app()</code></pre>
+<p>Golem deploy command (many options provided…just used the test portion then IDE shortcut)</p>
+<pre><code># Test your app
+
+## Run checks ----
+## Check the package before sending to prod
+devtools::check()
+rhub::check_for_cran()
+
+# Deploy
+
+## Local, CRAN or Package Manager ----
+## This will build a tar.gz that can be installed locally,
+## sent to CRAN, or to a package manager
+devtools::build()
+
+## RStudio ----
+## If you want to deploy on RStudio related platforms
+golem::add_rstudioconnect_file()
+golem::add_shinyappsio_file()
+golem::add_shinyserver_file()
+
+## Docker ----
+## If you want to deploy via a generic Dockerfile
+golem::add_dockerfile_with_renv()
+
+## If you want to deploy to ShinyProxy
+golem::add_dockerfile_with_renv_shinyproxy()
+
+
+# Deploy to Posit Connect or ShinyApps.io
+# In command line.
+rsconnect::deployApp(
+  appName = desc::desc_get_field("Package"),
+  appTitle = desc::desc_get_field("Package"),
+  appFiles = c(
+    # Add any additional files unique to your app here.
+    "R/",
+    "inst/",
+    "data/",
+    "NAMESPACE",
+    "DESCRIPTION",
+    "app.R"
+  ),
+  appId = rsconnect::deployments(".")$appID,
+  lint = FALSE,
+  forceUpdate = TRUE
+)</code></pre>
+<p>Helpful &amp; confidence-building test results from Golem’s pre-deployment checks:<br>
+<img src="src/framework_test.png" class="img-fluid" alt="Golem pre-deployment testing"></p>
+</section>
+<section id="rhino-vs.-golem" class="level4" data-number="7.2.1.2">
+<h4 data-number="7.2.1.2" class="anchored" data-anchor-id="rhino-vs.-golem"><span class="header-section-number">7.2.1.2</span> Rhino vs.&nbsp;Golem</h4>
+<p>In discussion of how to approach exploring these frameworks with a mentor (not fluent in R), one advice was to check the number of downloads which is indicative of uptake and available community support - e.g.&nbsp;in the frameworks the mentor would advise for python (flask), downloads would be in the millions. Official downloads counts of Rhino and Golem are available from CRAN.</p>
+<p>A roughly^ 1-hour time-boxed trial was conducted in both frameworks to “wet the toes”. The objective was to create an app with two plots, using a native dataset (easy proof-of-concept), then using the CRAN download counts for the two packages (to see how to add a second module). The build was done on a Windows laptop, R 4.3.2, RStudio as IDE, with Node v.16 (required for Rhino). As a stretch step beyond the timebox, an existing Shinyapps.io account was used for deployment. Datasets used are the publicly available CRAN downloads count, R’s in-the-box iris test data (and Rhino’s similar test rhinos test until I figured out how to import iris into Rhino).</p>
+<p>Rendered results are as follows, with Golem on left and Rhino on right (missing its title as Rhino requires a box::use call to be even able to add a h1 heading which was figured out after the 1-hour limit). Both plots for Rhino were made post the 1-hour timebox due to not understanding the package call syntax (which meant both datasets and ggplot failed to work). The top plots were rendered using iris dataset, in base R for Golem and ggplot (used it as a step to figure the syntax) for Rhino, respectively. Bottom plots were the CRAN downloads data plotted using ggplot (much higher downloads for older and well-established Golem!)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="src/framework_rendered.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">rendered apps - golem on left, Rhino on right</figcaption><p></p>
+</figure>
+</div>
+<p><strong>overall impressions</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 45%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Golem</th>
+<th>Rhino</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Objective reached?</td>
+<td>50%. Plotted a standard dataset (iris) graph only. The logic for the downloads count was written (and works outside of the app) but plot did not render.</td>
+<td>50% Plotted (a different) standard dataset (rhino’s rhinos) graph since the usual iris was not load-able. Second graph using ggplot was not rendered (see syntax issue)</td>
+</tr>
+<tr class="even">
+<td>Sticking-point</td>
+<td>namespace mistake - within the function module file, the name for the second graph was spelt differently between the namespace taglist and server function output</td>
+<td>Syntax to use functions from packages. Had trouble calling the usual in-the-box default iris dataset and using ggplot.</td>
+</tr>
+<tr class="odd">
+<td>Actual finish time</td>
+<td>~1:30 with extra time spent on i) sticking-point ii) adding renv package lock file a posteriori (did not realize it did not generate by default)</td>
+<td>~1:30 sticking point with the syntax</td>
+</tr>
+<tr class="even">
+<td>Structure</td>
+<td>For user without a basis in R package development, this was actually more foreign than Rhino. Needed to refer to a previously viewed video walkthrough and read the in-script guidance comments.</td>
+<td>Very similar to js react &amp; express structure</td>
+</tr>
+<tr class="odd">
+<td>Syntax</td>
+<td>Highly similar to daily R coding. Commented-out examples in default files were extremely helpful.</td>
+<td>Spent majority of time grappling with syntax to be able to use ggplot (tutorials use echarts4r, probably a nudge thereto given its speedier render) and even the basic iris dataset. Needed to understand the box package and calling packages’ functions (even ones not normally thought of as functions, e.g.&nbsp;ggplot’s aes) in the form of package<span class="math inline">function. Same for dataset</span>iris</td>
+</tr>
+<tr class="even">
+<td>Workflow</td>
+<td>Extremely clear using the prescriptive steps provided as in-script comments. Uses three lines of code in the run_dev file to render each line.</td>
+<td>Less clear, coder need to keep track but has the option to render app more simply any time. May be meant to be flexible for task distribution in a team</td>
+</tr>
+<tr class="odd">
+<td>Mental effort, open files</td>
+<td>5 (ui, server, 1st graph module, 2nd graph module, run_dev). ui &amp; server files are separate (and of course the modules) so there is a bit of flipping back and forth to ensure the correct modules aspects are called between files. There are useful auto-generated scripts that comes with generated modules directing copy-this-to-ui &amp; copy-that-to-server</td>
+<td>3 (main.R, 1st graph module, 2nd graph module) for this simple use, a single main.R file holds both ui and server scripts so there is one less open file to juggle.</td>
+</tr>
+<tr class="even">
+<td>Size (pre-deployment, completed with two plots)</td>
+<td>140 KB, 60 files, 27 folders. The renv is substantially lighter containing no actual libraries, only a json settings record of library versions</td>
+<td>3.82 MB, 134 files, 49 folders. More than half of which (2.40 MB, 83 files, 18 folders) due to the renv holding actual libraries scripts (only two “used” were explicitly called in code, but all their sub-libraries are included)</td>
+</tr>
+<tr class="odd">
+<td>Deployment</td>
+<td>Workflow required test process (~5 minutes) and with clear reports on asserts pass/fail. Deployment to shinyapps.io straightforward using IDE shortcut. Failing functions namespace (seems to be library in local vs.&nbsp;global namespace) so deployment did not render plots.</td>
+<td>No “shepherding” to pre-deployment testing but deployment successful. Deployment to shinyapps.io straightforward using IDE shortcut.</td>
+</tr>
+</tbody>
+</table>
+<p>The result of the deployment stretch goal is shown below, with Golem on left, Rhino on right. Golem’s included pre-deployment tests had several warnings about packages not being in the global environment. Hence its deployment is certainly mea culpa (lack of understanding of namespacing?) and not due to the framework, which did kindly &amp; rather clearly gave specific warnings. Rhino, on the other hand, did even render until the syntax issues were resolved - and when it deployed, it was WYSIWYG from the render. <img src="src/framework_deployed.png" class="img-fluid" alt="deployed apps - golem on left, Rhino on right"></p>
+<p><strong>What is exciting</strong> The testing structure provided in both frameworks is a key attractor. Unit testing for both appears to be the same, based on Hadley’s testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not. Golem’s included unit tests pre-deployment is excellent. Rhino’s other selling point is integrated github CI which includes e.g.&nbsp;linting.</p>
+<p><strong>Common concepts to take-away and potential challenges explore further</strong><br>
+- namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces<br>
+- allowance for performative coding e.g.&nbsp;Do proxy update using just client-side based on key events to avoid server calls<br>
+- Rhino requires Node js &gt; version 12. Are there conflicts between Rhino and different post-12 versions of node js? friction points with react (or okay as long as you use Rhino’s own react package)<br>
+- Rhino’s specificity and use of box seems to create much more verbose script. Explore if there are options to condense, otherwise existing ggplot figures will be extremely lengthy if migrated over - providers (Appsilon, ThinkR) &amp; community support<br>
+- ease-of-approach to user authentication and payments (which are major feature needs)</p>
+</section>
+</section>
+</section>
+</section>
+<section id="references" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> References</h1>
 <p><em>WWS Working Platforms</em><br>
 https://github.com/InterlabsOCWA<br>
 https://www.goodday.work/p/GKN7K9</p>
@@ -1021,10 +1323,10 @@ https://learning.oreilly.com/library/view/refactoring-workbook/0321109295/</p>
 <p>https://aberdeenstudygroup.github.io/studyGroup/lessons/SG-T1-GitHubVersionControl/VersionControl/</p>
 <p>#2.4.4.</p>
 </section>
-<section id="appendixreference-extracts" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Appendix/Reference Extracts</h1>
-<section id="dark-modelight-mode-technique" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="dark-modelight-mode-technique"><span class="header-section-number">8.1</span> Dark Mode/Light Mode Technique</h2>
+<section id="appendixreference-extracts" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Appendix/Reference Extracts</h1>
+<section id="dark-modelight-mode-technique" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="dark-modelight-mode-technique"><span class="header-section-number">9.1</span> Dark Mode/Light Mode Technique</h2>
 <p>(extract from Lemaire, 2020. <em>Refactoring at Scale</em>)<br>
 Dark Mode / Light Mode : We can compare pre-refactor and post-refactor behavior by employing what we’ve coined at Slack as the light/dark technique<br>
 Dark mode : Both implementations are called<br>
@@ -1046,10 +1348,10 @@ Continue to opt broader groups of users into light mode, until everyone is succe
 <p>Disable execution of both code paths<br>
 Remove the old logic altogether : only the new implementation should remain</p>
 </section>
-<section id="typical-code-issues-correspondent-refactoring" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="typical-code-issues-correspondent-refactoring"><span class="header-section-number">8.2</span> Typical Code Issues &amp; Correspondent Refactoring</h2>
-<section id="refactoring-methods" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="refactoring-methods"><span class="header-section-number">8.2.1</span> Refactoring methods</h3>
+<section id="typical-code-issues-correspondent-refactoring" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="typical-code-issues-correspondent-refactoring"><span class="header-section-number">9.2</span> Typical Code Issues &amp; Correspondent Refactoring</h2>
+<section id="refactoring-methods" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="refactoring-methods"><span class="header-section-number">9.2.1</span> Refactoring methods</h3>
 <ol type="a">
 <li>Extraction: breaking code into chunks or utilizing existing chunks for isolation into separate functions and replaced with a call to the functions. Change patterns into abstraction. Similarly for variables</li>
 <li>Inline refactoring: finding functions calls and replacing them with the function content (opposite of extraction)</li>
@@ -1058,53 +1360,53 @@ Remove the old logic altogether : only the new implementation should remain</p>
 </ol>
 </section>
 </section>
-<section id="handling-commented-out-code" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="handling-commented-out-code"><span class="header-section-number">8.3</span> Handling Commented-out code</h2>
+<section id="handling-commented-out-code" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="handling-commented-out-code"><span class="header-section-number">9.3</span> Handling Commented-out code</h2>
 <p>## stuff to incorp. COMMENTED-OUT CODE In the case of commented-out code, it’s pretty obvious that the code is unused. I always recommend that developers who are tempted to comment-out code instead simply delete it if the code is tracked using version control. If you need it again someday, you can easily recover it by going back through your commit history.</p>
 <p>new function to help mitigate code degradation. Let’s say we write up a simple helper to encapsulate all the logic for validating a user object; we’ll call it validateUser</p>
 <p>A NOTE ABOUT COUNTING LINES OF COMMENTS By and large, ignoring comments is good practice when counting lines of code. Docblocks and inlined TODOs do not affect the behavior of our programs, so including them in our size calculations would not help us better characterize a program’s complexity. In practice, however, I’ve noticed that you can easily pinpoint some rather perplexing sections of code by counting the number of inline comments at the function level. In general, developers tend to leave inline code comments when the surrounding logic is difficult to follow. Whether that’s because the code is dealing with a complicated piece of business logic or it has just become gradually more convoluted over time, we tend to leave some pointers to others who come after us when modifying exceptionally tricky code. Therefore, we can use the quantity of inline comments within a single function, whether short or long, as a possible warning sign.</p>
 <p>When we’re working to improve an existing implementation, whatever the extent of our endeavor, we want to be sure that we’re correctly retaining its behavior. We can safely assert that our new solution continues to work identically to the old by relying on the original implementation’s test suite. Because we are relying on the test coverage to warn us about potential regressions, we need to verify two things before beginning our refactoring effort: first, confirm that the original implementation has test coverage and, second, determine whether that test coverage is adequate.<br>
 refactoring requires us to be able to ensure that behavior remains identical at every iteration. We can increase our confidence that nothing has changed by writing a suite of tests (unit, integration, end to end), and we should not seriously consider moving forward with any refactoring effort until we’ve established sufficient test coverage.</p>
 </section>
-<section id="unit-testing-notes" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="unit-testing-notes"><span class="header-section-number">8.4</span> Unit testing notes</h2>
+<section id="unit-testing-notes" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="unit-testing-notes"><span class="header-section-number">9.4</span> Unit testing notes</h2>
 <ul>
 <li><p>Set a canary test (it checks if the test framework works)</p></li>
 <li><p>Add few (automated) tests. Start with code candidate to change first. If code wasn’t designed to be testable, don’t change it yet. Make your best to test it as is. This is very important.</p></li>
 </ul>
-<section id="misc.-heap-of-code" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="misc.-heap-of-code"><span class="header-section-number">8.4.1</span> Misc. heap of code</h3>
+<section id="misc.-heap-of-code" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="misc.-heap-of-code"><span class="header-section-number">9.4.1</span> Misc. heap of code</h3>
 <p>Find main package list + versions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(head</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>      (tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Package =</span> <span class="fu">names</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>]),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Version =</span> <span class="fu">unname</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>])</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      ), <span class="at">n=</span><span class="dv">600</span> <span class="co">#where n = an appropriately large value to capture all your packages</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(head</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>      (tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Package =</span> <span class="fu">names</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>]),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Version =</span> <span class="fu">unname</span>(<span class="fu">installed.packages</span>()[,<span class="dv">3</span>])</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      ), <span class="at">n=</span><span class="dv">600</span> <span class="co">#where n = an appropriately large value to capture all your packages</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Error in readRDS(file) : unknown input format
 Error in readRDS(file) : unknown input format
-Error in readRDS(file) : unknown input format
-# A tibble: 392 × 2
-   Package      Version 
-   &lt;chr&gt;        &lt;chr&gt;   
- 1 abind        1.4-5   
- 2 anytime      0.3.9   
- 3 askpass      1.1     
- 4 assertthat   0.2.1   
- 5 backports    1.4.1   
- 6 base         4.2.3   
- 7 base64enc    0.1-3   
- 8 BH           1.81.0-1
- 9 bigD         0.2.0   
-10 BiocGenerics 0.44.0  
-# ℹ 382 more rows</code></pre>
+# A tibble: 418 × 2
+   Package    Version 
+   &lt;chr&gt;      &lt;chr&gt;   
+ 1 abind      1.4-5   
+ 2 anytime    0.3.9   
+ 3 askpass    1.2.0   
+ 4 assertthat 0.2.1   
+ 5 attachment 0.4.0   
+ 6 attempt    0.3.1   
+ 7 backports  1.4.1   
+ 8 base       4.2.3   
+ 9 base64enc  0.1-3   
+10 BH         1.81.0-1
+# ℹ 408 more rows</code></pre>
 </div>
 </div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd</span> //c tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 </section>

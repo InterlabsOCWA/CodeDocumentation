@@ -906,13 +906,13 @@ The result of the deployment stretch goal is shown below, with Golem on left, Rh
 **What is exciting**
 The testing structure provided in both frameworks is a key attractor.  Unit testing for both appears to be the same, based on Hadley's testthis library; Rhino additionally provides end-to-end testing using Cypress which Golem does not.  Golem's included unit tests pre-deployment is excellent.  Rhino's other selling point is integrated github CI which includes e.g. linting.
 
-**Common concepts to take-away and potential challenges explore further** 
-- namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces 
+**Common concepts to take-away and potential challenges explore further**   
+- namespace, modularization in Shiny common to both frameworks - avoiding namespace collisons across different areas of the app and encapsulating distinct app interfaces   
 - allowance for performative coding e.g. Do proxy update using just client-side based on key events to avoid server calls  
-- Rhino requires Node js > version 12.  Are there conflicts between Rhino and different post-12 versions of node js?  friction points with react (or okay as long as you use Rhino's own react package)
+- Rhino requires Node js > version 12.  Are there conflicts between Rhino and different post-12 versions of node js?  friction points with react (or okay as long as you use Rhino's own react package)  
 - Rhino's specificity and use of box seems to create much more verbose script.  Explore if there are options to condense, otherwise existing ggplot figures will be extremely lengthy if migrated over
-- providers (Appsilon, ThinkR) & community support 
-
+- providers (Appsilon, ThinkR) & community support  
+- ease-of-approach to user authentication and payments (which are major feature needs)  
 
 
 # References
