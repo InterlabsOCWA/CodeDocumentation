@@ -761,7 +761,12 @@ golemappy
 │   └───app
 │       └───www
 ├───man
-└───R
+├───R
+├───renv
+│   └───staging
+└───rsconnect
+    └───shinyapps.io
+        └───interlabs
 ```
   
 Rhino app folder structure  
@@ -795,6 +800,9 @@ Source: ["How to make a cheatsheet for Rhino" (Kim, J.) ](https://jhk0530.medium
 **Dependency management** : The Rhino framework uses renv (the modern version of packrat) to control versions of package dependencies used.  At deployment though, it still requires packrat.  Golem (as learnt in the pharmaverse workshop) may also use renv, although that was included in its template set-up and renv must be separately initialized.
 
 **Learning Curve & guidance** : Both frameworks have good documentation.  However (as described in detail in next section's time-boxed trials), golem has very thorough and walkthrough-like comment-prompts in the script templates, nearly adequate to fully code-along just within the script.  Whereas, Rhino provides no in-script guidance, just a basic example (similar to npx create-react-app).  It is necessary to working with the docs open by its side.  Just by the sheer extent of the default template folder structure, it is likely to take more time to figure out and update all the corresponding elements.  Its similarity to other full stack frameworks will be conducive to navigation and more accessible to those with a software engineering background.  
+
+![guidance in script during dev - golem on left, Rhino on right](src/framework_scripts.png)
+
 
 **How to render (in development) & How to deploy** 
 Rhino is simpler in this aspect, requiring a single console command.  Golem (if any changes had been made) requires several more lines to be run, but that is all provided in the run_dev.R file.  
