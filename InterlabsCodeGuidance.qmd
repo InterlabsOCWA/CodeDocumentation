@@ -726,10 +726,13 @@ The QAQC workflow aligns with the QMS SOP and the participants ToR into a Shiny 
 ## Usage Scenarios
 The version control for this application is in https://github.com/InterlabsOCWA/std_curve   
 Development occurs in two branches, the main differentiator being the presence of the database.  
+
 ### web branch  
-for quick usage, has "debug" file (which loads in a specific Rey round filled template for testing)
+For quick usage, has "debug" file (which loads in a specific Rey round filled template for testing)
+
 ### db branch  
 *insert presentation slides here?*  
+This branch is used to generate the **dt_methods** summary sheet of all participant labs, which will be further used in the **base_code**. The code will based on some parameters in the data report (e.x. fraction, platform, method code) to identify their 'Conc_class' and 'Extraction_Code'. 
 
 ## Report split-generation
 1. Use new sample notes which has an additional field for report group, which must be filled as pt, interlab, or both.  
