@@ -212,10 +212,10 @@ When renv’s Python integration is active, a couple extra features will activat
 
 ## Python
 - To check your version of python, use command line or in python:
-```{python}
+{python}
 import sys
 print(sys.version)
-```
+
 
 
 ## Postgres SQL database (subject to change)
@@ -633,12 +633,16 @@ The user may then use the lintr result in the Markers pane as a guide to modify 
 - recommend every x period
 - workflow
 
+## Functions abstraction
+- every modular piece of code that performs an action, transforming an input to output should be contained in a function
+- functions (or a related family thereof)
+
 ## unit testing approaches & practices 
 *At the minimum, we should aim to write tests for the "happy path" of our application.
 
 What is a "happy path" test? "Happy path" tests are very useful, because they catch the most critical bugs, but are definitely not sufficient for building reliable and robust applications.* https://effectivecio.com/2009/11/02/the-happy-path/
 
-The happy path is the path through a system where everything works, the data is correct, the system stays up, and the users are well-behaved.  We tend to test the happy path first because we understand how the system should function and want to ensure that the basic features should work.  We need to move off the happy path and wander in the weeds.  What if the quantity exceeds stock on hand? What if the user enters too few digits from their credit card? Or too many? Or adds a space, or a dash? What if the zip code doesn’t match the state? What if? What if? What if?
+The happy path is the path through a system where everything is as expected.
 
 It doesn’t take long to test the happy path.  It takes forever to test everything off the happy path. You need to spend a lot of time wandering away from the happy path, and maybe there is a reverse rule for testing: 20% of your time on the happy path; 80% of your time off of it.
 
@@ -726,6 +730,43 @@ Development occurs in two branches, the main differentiator being the presence o
 for quick usage, has "debug" file (which loads in a specific Rey round filled template for testing)
 ### db branch  
 *insert presentation slides here?*  
+
+## Report split-generation
+1. Use new sample notes which has an additional field for report group, which must be filled as pt, interlab, or both.  
+![sample notes spreadsheet](img/sampleNotesRptGrp.png)  
+2. In Tarkin round of github (currently a development branch), the base code is altered 
+2a. in config chunk at start, define reportType variable as pt or interlab (~line 70)  
+2b. chunk 2d filters out by report group to generate the df "sample_status" which generates df "anonymous_ID_inhibition", which is then joined to dt_interlab.  This should be changed to **inner join** to cut out labs not in the group.  
+
+::: {.callout-note}
+TODO change to **inner join**  
+N.B.*maybe cut out fnames for quicker read?*
+::: 
+
+```{r, echo = FALSE}
+nodes = data.frame("name" = 
+ c("Sample Notes (xlsx)", # Node 0
+   "Base Code config chunk reportType", # Node 1
+ "Base Code Chunk 2d (~line 400)", # Node 2
+ "Base Code df's = PT + both", # Node 3
+ "Base Code df's = Interlab + both", # Node 4
+ "skeleton.rmd pt report", #Node 5
+ "skeleton.rmd interlab report")) #Node 6
+links = as.data.frame(matrix(c(
+ 0, 2, 10, # Each row represents a link. The first number
+ 1, 2, 10, # represents the node being conntected from. 
+ 2, 3, 10, # the second number represents the node connected to.
+ 2, 4, 10,
+ 3, 5, 10,
+ 4, 6, 10),# The third number is the value of the node
+ byrow = TRUE, ncol = 3))
+names(links) = c("source", "target", "value")
+sankeyNetwork(Links = links, Nodes = nodes,
+ Source = "source", Target = "target",
+ Value = "value", NodeID = "name",
+ fontSize= 12, nodeWidth = 30)
+```
+
 
 ## Future Framework Migration Research & Reflect
 The future intention is for the interlabs QAQC app to be available to participating labs, thereby separating potential role conflicts for the screening interlab staff (who should not be correcting submittals).  This utility app may be need to be built in tandem the main interlab website.  
