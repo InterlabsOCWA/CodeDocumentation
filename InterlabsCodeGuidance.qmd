@@ -217,8 +217,9 @@ import sys
 print(sys.version)
 
 
-
-## Postgres SQL database (subject to change)
+## Postgres SQL database set-up (subject to change)
+N.B. database is local for now - local version being shared via "back-up and restore" method as described in https://stackoverflow.com/questions/30043392/copying-a-postgres-database-from-one-server-to-another  
+  
 1. Download the [zip package](https://www.enterprisedb.com/download-postgresql-binaries) from [PostgresSQL](https://www.postgresql.org/download/windows/).  **The installer version requires admin rights, hence use zip**  
 2. Unzip in a directory where you have read/write rights.  
 3. To allow for command line control - in windows menu, search for "Edit the environment variables" and edit in the Variable "Path"to include the bin directory of where you have unzipped postgres, e.g. "C:\\Users\\hoja\\Downloads\\postgresql-16.0-1-windows-x64-binaries\\pgsql\\bin" 
@@ -281,6 +282,55 @@ To confirm the user has new privileges, enter
 ```
 
 10. In pgAdmin, right click on localhost in the Objects Explorer panel to the left of the GUI and click refresh if needed to update.
+
+## Postgres database operation {#db_op}
+1. To start Postgres server, use the below command adapting the path to where you've previously set as database storage above:
+```sh
+pg_ctl -D C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data -l logfile start
+```
+The command line should then respond with "waiting for server to start.....done.  Server started".  If using pgAdmin to access, follow that GUI's dropdown hierarchy.  If using shell, use following steps:  
+
+2. Access client using
+```sh
+psql -U postgres
+```sh
+
+To connect to the interlab database you created - 
+```sh
+postgres#= \c interlab
+```
+
+You may encounter the [following error](https://stackoverflow.com/questions/26441873/starting-postgresql-and-pgadmin-in-windows-without-installation) while starting psql.exe:
+
+ "psql: FATAL : role [user] does not exist.
+
+To resolve this,  
+i. Be on the same folder path (where you have initdb.exe) i.e. "source-folder/pgsql/bin"
+ii. Run the following to login as user "interlab" which has been assigned superuser privileges for the "interlab database".  If not accessing the interlab database, login as general superuser -U postgres.  
+
+```sh
+psql -U interlab
+```
+
+iii.  if prompted, the password is the same as the user name (or whatever the db is set too, e.g. interlab)
+
+Upon successful start up, the command line prompt should change to "database_name=#" as seen at the bottom of next figure, i.e. interlab=# if logging into the interlab database.  SQL commands can be 
+
+
+To exit, use the “\\q” or “\\quit” commands, and “CTRL + C”, “CTRL + D”, or “CTRL + Z” shortcut keys
+
+::: {.callout-tip}
+## Some useful PSQL one-liner's
+
+export the table to csv to sort/filter/copy into the other spreadsheets)
+```sh
+\copy dt_method_summary TO 'dt_method_summary.csv' CSV HEADER
+```
+use this to check the submit to qaqc summary worked for the last lab - if uploaded/submitted by ascending order, the last labs would show first in descending order)
+```sh
+SELECT * from dt_qaqc_summary ORDER BY "Lab_ID" DESC LIMIT 10;
+```
+:::
 
 # Version Control
 ```{r}
@@ -725,14 +775,17 @@ The QAQC workflow aligns with the QMS SOP and the participants ToR into a Shiny 
 
 ## Usage Scenarios
 The version control for this application is in https://github.com/InterlabsOCWA/std_curve   
-Development occurs in two branches, the main differentiator being the presence of the database.  
+Please switch to web branch before usage.
 
-### web branch  
-For quick usage, has "debug" file (which loads in a specific Rey round filled template for testing)
+### main branch
+This branch is reserved for website deployment (on shinyapps).  It is in hiatus since sample Rey and will not work with later rounds.  It was tested successfully as a route for report submittal (using Outlook SMTP) but does not include database connection. 
+
+### web branch  *In use*
+This is the current branch, with consideration of template changes in Tarkin.  It has not been tested for report submittal functionality (those code chunks may still be mapped to older template locations).  
+Prior to usage, decide if you are at the point of writing to database (i.e. have cleaned results).  If so, set first chunk eval_db to TRUE and ensure the [database](#db_op) is running prior to starting.  If not (i.e. just checking/cleaning raw results), set eval_db to FALSE and there is no need to run database concurrently.   
 
 ### db branch  
-*insert presentation slides here?*  
-This branch is used to generate the **dt_methods** summary sheet of all participant labs, which will be further used in the **base_code**. The code will based on some parameters in the data report (e.x. fraction, platform, method code) to identify their 'Conc_class' and 'Extraction_Code'. 
+This branch has been incorporated with web branch as of Sample Tarkin and is no longer in use.  
 
 ## Report split-generation
 1. Use new sample notes which has an additional field for report group, which must be filled as pt, interlab, or both.  
