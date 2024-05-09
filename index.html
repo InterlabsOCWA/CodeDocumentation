@@ -145,7 +145,8 @@ window.Quarto = {
   <li><a href="#package-dependencies" id="toc-package-dependencies" class="nav-link" data-scroll-target="#package-dependencies"><span class="header-section-number">2.2.1</span> Package Dependencies</a></li>
   </ul></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python"><span class="header-section-number">2.3</span> Python</a></li>
-  <li><a href="#postgres-sql-database-subject-to-change" id="toc-postgres-sql-database-subject-to-change" class="nav-link" data-scroll-target="#postgres-sql-database-subject-to-change"><span class="header-section-number">2.4</span> Postgres SQL database (subject to change)</a></li>
+  <li><a href="#postgres-sql-database-set-up-subject-to-change" id="toc-postgres-sql-database-set-up-subject-to-change" class="nav-link" data-scroll-target="#postgres-sql-database-set-up-subject-to-change"><span class="header-section-number">2.4</span> Postgres SQL database set-up (subject to change)</a></li>
+  <li><a href="#db_op" id="toc-db_op" class="nav-link" data-scroll-target="#db_op"><span class="header-section-number">2.5</span> Postgres database operation</a></li>
   </ul></li>
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control"><span class="header-section-number">3</span> Version Control</a>
   <ul class="collapse">
@@ -174,7 +175,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#interactive-qaqc-app" id="toc-interactive-qaqc-app" class="nav-link" data-scroll-target="#interactive-qaqc-app"><span class="header-section-number">7</span> Interactive QAQC App</a>
   <ul class="collapse">
-  <li><a href="#usage-scenarios" id="toc-usage-scenarios" class="nav-link" data-scroll-target="#usage-scenarios"><span class="header-section-number">7.1</span> Usage Scenarios</a></li>
+  <li><a href="#usage-scenarios" id="toc-usage-scenarios" class="nav-link" data-scroll-target="#usage-scenarios"><span class="header-section-number">7.1</span> Usage Scenarios</a>
+  <ul class="collapse">
+  <li><a href="#main-branch-1" id="toc-main-branch-1" class="nav-link" data-scroll-target="#main-branch-1"><span class="header-section-number">7.1.1</span> main branch</a></li>
+  <li><a href="#web-branch-in-use" id="toc-web-branch-in-use" class="nav-link" data-scroll-target="#web-branch-in-use"><span class="header-section-number">7.1.2</span> web branch <em>In use</em></a></li>
+  <li><a href="#db-branch" id="toc-db-branch" class="nav-link" data-scroll-target="#db-branch"><span class="header-section-number">7.1.3</span> db branch</a></li>
+  </ul></li>
   <li><a href="#report-split-generation" id="toc-report-split-generation" class="nav-link" data-scroll-target="#report-split-generation"><span class="header-section-number">7.2</span> Report split-generation</a></li>
   <li><a href="#future-framework-migration-research-reflect" id="toc-future-framework-migration-research-reflect" class="nav-link" data-scroll-target="#future-framework-migration-research-reflect"><span class="header-section-number">7.3</span> Future Framework Migration Research &amp; Reflect</a>
   <ul class="collapse">
@@ -299,8 +305,8 @@ window.Quarto = {
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-f4bedd76f656a6f17c81" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f4bedd76f656a6f17c81">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-302127a5cae50724a7d4" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-302127a5cae50724a7d4">{"x":{"links":{"source":[0,1,2,2,4,4,5,6],"target":[1,2,3,4,5,6,7,7],"value":[1,1,1,1,1,1,1,1]},"nodes":{"name":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"],"group":["Emails","Raw data","Clean data","20230529_Sample_Notes.xlsm","WBE_Sample_Phasma-CA_20230511.Rmd","plots","dataframe","report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -476,8 +482,9 @@ When renv’s Python integration is active, a couple extra features will activat
 <li>To check your version of python, use command line or in python: {python} import sys print(sys.version)</li>
 </ul>
 </section>
-<section id="postgres-sql-database-subject-to-change" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="postgres-sql-database-subject-to-change"><span class="header-section-number">2.4</span> Postgres SQL database (subject to change)</h2>
+<section id="postgres-sql-database-set-up-subject-to-change" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="postgres-sql-database-set-up-subject-to-change"><span class="header-section-number">2.4</span> Postgres SQL database set-up (subject to change)</h2>
+<p>N.B. database is local for now - local version being shared via “back-up and restore” method as described in https://stackoverflow.com/questions/30043392/copying-a-postgres-database-from-one-server-to-another</p>
 <ol type="1">
 <li>Download the <a href="https://www.enterprisedb.com/download-postgresql-binaries">zip package</a> from <a href="https://www.postgresql.org/download/windows/">PostgresSQL</a>. <strong>The installer version requires admin rights, hence use zip</strong><br>
 </li>
@@ -536,19 +543,62 @@ i. Be on the same folder path (where you have initdb.exe) i.e.&nbsp;“source-fo
 <li>In pgAdmin, right click on localhost in the Objects Explorer panel to the left of the GUI and click refresh if needed to update.</li>
 </ol>
 </section>
+<section id="db_op" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="db_op"><span class="header-section-number">2.5</span> Postgres database operation</h2>
+<ol type="1">
+<li>To start Postgres server, use the below command adapting the path to where you’ve previously set as database storage above:</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pg_ctl</span> <span class="at">-D</span> C:/Users/hoja/AppData/Local/PostgresSQL/pgsql/data <span class="at">-l</span> logfile start</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The command line should then respond with “waiting for server to start…..done. Server started”. If using pgAdmin to access, follow that GUI’s dropdown hierarchy. If using shell, use following steps:</p>
+<ol start="2" type="1">
+<li>Access client using</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> postgres</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">sh</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> connect to the interlab database you created <span class="at">-</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>sh</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ex">postgres#=</span> <span class="dt">\c</span> interlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You may encounter the <a href="https://stackoverflow.com/questions/26441873/starting-postgresql-and-pgadmin-in-windows-without-installation">following error</a> while starting psql.exe:</p>
+<p>“psql: FATAL : role [user] does not exist.</p>
+<p>To resolve this,<br>
+i. Be on the same folder path (where you have initdb.exe) i.e.&nbsp;“source-folder/pgsql/bin” ii. Run the following to login as user “interlab” which has been assigned superuser privileges for the “interlab database”. If not accessing the interlab database, login as general superuser -U postgres.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> interlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="i">
+<li>if prompted, the password is the same as the user name (or whatever the db is set too, e.g.&nbsp;interlab)</li>
+</ol>
+<p>Upon successful start up, the command line prompt should change to “database_name=#” as seen at the bottom of next figure, i.e.&nbsp;interlab=# if logging into the interlab database. SQL commands can be</p>
+<p>To exit, use the “\q” or “\quit” commands, and “CTRL + C”, “CTRL + D”, or “CTRL + Z” shortcut keys</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Some useful PSQL one-liner’s
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>export the table to csv to sort/filter/copy into the other spreadsheets)</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">\copy</span> dt_method_summary TO <span class="st">'dt_method_summary.csv'</span> CSV HEADER</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>use this to check the submit to qaqc summary worked for the last lab - if uploaded/submitted by ascending order, the last labs would show first in descending order)</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SELECT</span> <span class="pp">*</span> from dt_qaqc_summary ORDER BY <span class="st">"Lab_ID"</span> DESC LIMIT 10<span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
 </section>
 <section id="version-control" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Version Control</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Yuhan's section</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">#### II. Training/Establishing Guidelines</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Acquire training on and establish version control on Github *(2 weeks/July 2023)* *Deliverable: Training/Guidance document section, specifically method for &amp; train team as soon as possible on version control/change management**\</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">### III. Preparatory Version Control &amp; Unit Tests</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Establish version control on Github. All team members to abide by training guidelines when introducing changes to main code base *(2 weeks/July 2023)*\</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    **Deliverable: Version control workflow graphic (to incl. in Training/Guidance document)**\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Yuhan's section</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">#### II. Training/Establishing Guidelines</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Acquire training on and establish version control on Github *(2 weeks/July 2023)* *Deliverable: Training/Guidance document section, specifically method for &amp; train team as soon as possible on version control/change management**\</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="do">### III. Preparatory Version Control &amp; Unit Tests</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#1.  Establish version control on Github. All team members to abide by training guidelines when introducing changes to main code base *(2 weeks/July 2023)*\</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    **Deliverable: Version control workflow graphic (to incl. in Training/Guidance document)**\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Generic information is provided in this section, with interlabs specific practice at the next section. If you need to run any of the steps in this section, it is recommended to do so in consultation with the team (e.g.&nbsp;adding a new branch, new repository). Otherwise you should only need to follow the <a href="#vc-project-workflow">project specific version control steps</a> for typical work.</p>
 <section id="installation-and-setup" class="level2" data-number="3.1">
@@ -599,11 +649,11 @@ Note
 </div>
 <p><em>Connect to Git, GitHub and RStudio</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I would suggest that we don't need to give information on setting up new repository or branches in this doc (besides a general reference link) because we don't want people starting random repository/branches different from what you set up.</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># instead can you walk through git clone process which Alex &amp; Chris will need to use?  </span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if they git clone do they need to set up connection in RStudio (or command line)?  if not then the current connection step can be moved away alongside making new repositories and branches</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># need a brief paragraph on rollback - how to use old commit hash to bring back an older version if a new commit has severe issues</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I would suggest that we don't need to give information on setting up new repository or branches in this doc (besides a general reference link) because we don't want people starting random repository/branches different from what you set up.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># instead can you walk through git clone process which Alex &amp; Chris will need to use?  </span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if they git clone do they need to set up connection in RStudio (or command line)?  if not then the current connection step can be moved away alongside making new repositories and branches</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># need a brief paragraph on rollback - how to use old commit hash to bring back an older version if a new commit has severe issues</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>5. Setup a new remote repository in GitHub</strong><br>
 A new repository may be set up for discrete projects. (For the most part, we will be working in the base code repository at https://github.com/InterlabsOCWA/base_code) <img src="src/SetRepo.gif" class="img-fluid" alt="repo"></p>
@@ -793,15 +843,15 @@ Automatic merge failed; fix conflicts and then commit the result.'
 <section id="vc-project-workflow" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="vc-project-workflow"><span class="header-section-number">3.3</span> Version control project workflow</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#- need the graphic cleaned up so it makes sense to a regular reader like Alex - e.g. what does it mean CA will mainly work here?  next round could be you or I, need the description for the task not a person</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># what is JIRA-35 example feature?  can you change this example to match something we might see in interlabs.  also use our naming convention which applies to branches as well (so the double dash and space are not acceptable)</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom comment - "feel free [...]" can you add the note about how the feature or develop branch gets merged?  It's a note to yourself (I think) so don't leave it for the reader)</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#TBD</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># explain bare min. information you need with commit message like you started with the annotation under the round dots.  Initial name is probably the least important info in the commit since git would track who pushed the change anyways?  not sure</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># explain how each dot is a commit like a save point we can revert to by knowing the commit hash e.g. commit ba9da59 </span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># I moved the home folder description up right beneath the diagram.  We need a description of the normal working "place" (the git clone local - you mentioned in the general set up for setting up a new repository but can you add description of how it would be like for our project base code?  especially with branches - does the user need to git clone each branch into a separate folder, or can they switch after git cloning the main?  this needs to be very clear assuming the reader is a new student , for example).  How often are we to sync/commit to github from local?  Then, back to the network folder home locations - how often are these to be "synced" with the github versions?  Decide on a frequency and that will become part of the QMS requirement for data management.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comments for Yuhan </span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#- need the graphic cleaned up so it makes sense to a regular reader like Alex - e.g. what does it mean CA will mainly work here?  next round could be you or I, need the description for the task not a person</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># what is JIRA-35 example feature?  can you change this example to match something we might see in interlabs.  also use our naming convention which applies to branches as well (so the double dash and space are not acceptable)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom comment - "feel free [...]" can you add the note about how the feature or develop branch gets merged?  It's a note to yourself (I think) so don't leave it for the reader)</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#TBD</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># explain bare min. information you need with commit message like you started with the annotation under the round dots.  Initial name is probably the least important info in the commit since git would track who pushed the change anyways?  not sure</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># explain how each dot is a commit like a save point we can revert to by knowing the commit hash e.g. commit ba9da59 </span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># I moved the home folder description up right beneath the diagram.  We need a description of the normal working "place" (the git clone local - you mentioned in the general set up for setting up a new repository but can you add description of how it would be like for our project base code?  especially with branches - does the user need to git clone each branch into a separate folder, or can they switch after git cloning the main?  this needs to be very clear assuming the reader is a new student , for example).  How often are we to sync/commit to github from local?  Then, back to the network folder home locations - how often are these to be "synced" with the github versions?  Decide on a frequency and that will become part of the QMS requirement for data management.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>The overall workflow graph of version control</strong></p>
 <p>The diagram below shows the overall version control workflow for each round.</p>
@@ -943,8 +993,8 @@ Where Branch = <em>branch name</em> e.g.&nbsp;should primarily develop unless yo
 <p><em>lintr</em>:<br>
 lintr package will be set up with the main code to provide diagnostic linting (i.e.&nbsp;as opposed to auto-correction using stylr package), recommending but not enforcing stylistic changes. It will activate with github upload workflows following this set up command, which also creates a <strong>.github/workflows</strong> folder with <strong>lint.yaml</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_github_action</span>(<span class="st">"lint"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for context, check in console - vignette("continuous-integration")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_github_action</span>(<span class="st">"lint"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for context, check in console - vignette("continuous-integration")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once lintr is installed, it can be accessed in RStudio. In order to see the diagnostic results, first enable the “Markers” pane by &gt; “Tools” &gt; “Global Options…” &gt; go to “Code” on the left-hand-side &gt; “Diagnostics” tab &gt; check “Show diagnostics for R”. The Markers pane will then be available tabbed next to Console/Terminal/Background Jobs to display lint results.</p>
 <p>To run lintr, open Tools &gt; Addins. From the pop-up window, select lintr from the addin’s list and execute on the open code file.<br>
@@ -1151,10 +1201,20 @@ lintr package will be set up with the main code to provide diagnostic linting (i
 <section id="usage-scenarios" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="usage-scenarios"><span class="header-section-number">7.1</span> Usage Scenarios</h2>
 <p>The version control for this application is in https://github.com/InterlabsOCWA/std_curve<br>
-Development occurs in two branches, the main differentiator being the presence of the database.<br>
-### web branch<br>
-for quick usage, has “debug” file (which loads in a specific Rey round filled template for testing) ### db branch<br>
-<em>insert presentation slides here?</em></p>
+Please switch to web branch before usage.</p>
+<section id="main-branch-1" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="main-branch-1"><span class="header-section-number">7.1.1</span> main branch</h3>
+<p>This branch is reserved for website deployment (on shinyapps). It is in hiatus since sample Rey and will not work with later rounds. It was tested successfully as a route for report submittal (using Outlook SMTP) but does not include database connection.</p>
+</section>
+<section id="web-branch-in-use" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="web-branch-in-use"><span class="header-section-number">7.1.2</span> web branch <em>In use</em></h3>
+<p>This is the current branch, with consideration of template changes in Tarkin. It has not been tested for report submittal functionality (those code chunks may still be mapped to older template locations).<br>
+Prior to usage, decide if you are at the point of writing to database (i.e.&nbsp;have cleaned results). If so, set first chunk eval_db to TRUE and ensure the <a href="#db_op">database</a> is running prior to starting. If not (i.e.&nbsp;just checking/cleaning raw results), set eval_db to FALSE and there is no need to run database concurrently.</p>
+</section>
+<section id="db-branch" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="db-branch"><span class="header-section-number">7.1.3</span> db branch</h3>
+<p>This branch has been incorporated with web branch as of Sample Tarkin and is no longer in use.</p>
+</section>
 </section>
 <section id="report-split-generation" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="report-split-generation"><span class="header-section-number">7.2</span> Report split-generation</h2>
@@ -1162,7 +1222,7 @@ for quick usage, has “debug” file (which loads in a specific Rey round fille
 <li>Use new sample notes which has an additional field for report group, which must be filled as pt, interlab, or both.<br>
 <img src="img/sampleNotesRptGrp.png" class="img-fluid" alt="sample notes spreadsheet"><br>
 </li>
-<li>In Tarkin round of github (currently a development branch), the base code is altered 2a. in config chunk at start, define reportType variable as pt or interlab<br>
+<li>In Tarkin round of github (currently a development branch), the base code is altered 2a. in config chunk at start, define reportType variable as pt or interlab (~line 70)<br>
 2b. chunk 2d filters out by report group to generate the df “sample_status” which generates df “anonymous_ID_inhibition”, which is then joined to dt_interlab. This should be changed to <strong>inner join</strong> to cut out labs not in the group.</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1180,30 +1240,9 @@ N.B.<em>maybe cut out fnames for quicker read?</em></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>nodes <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">"name"</span> <span class="ot">=</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">c</span>(<span class="st">"Sample Notes (xlsx) </span><span class="sc">\n</span><span class="st"> ReportGrp"</span>, <span class="co"># Node 0</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">"Base Code config chunk -&gt; set reportType = interlab OR pt (~line 70)"</span>, <span class="co"># Node 1</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a> <span class="st">"Base Code Chunk 2d (~line 400)"</span>, <span class="co"># Node 2</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a> <span class="st">"Base Code all subsequent df's = PT + both"</span>, <span class="co"># Node 3</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a> <span class="st">"Base Code all subequent df's = Interlab + both"</span>, <span class="co"># Node 4</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a> <span class="st">"skeleton.rmd pt report"</span>, <span class="co">#Node 5</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a> <span class="st">"skeleton.rmd interlab report"</span>)) <span class="co">#Node 6</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>links <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="co"># Each row represents a link. The first number</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="co"># represents the node being conntected from. </span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="co"># the second number represents the node connected to.</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>,</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>,</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">10</span>),<span class="co"># The third number is the value of the node</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a> <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="at">ncol =</span> <span class="dv">3</span>))</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(links) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"source"</span>, <span class="st">"target"</span>, <span class="st">"value"</span>)</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">sankeyNetwork</span>(<span class="at">Links =</span> links, <span class="at">Nodes =</span> nodes,</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a> <span class="at">Source =</span> <span class="st">"source"</span>, <span class="at">Target =</span> <span class="st">"target"</span>,</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a> <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a> <span class="at">fontSize=</span> <span class="dv">12</span>, <span class="at">nodeWidth =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-ab9dc547cbaf8a7be629" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-ab9dc547cbaf8a7be629">{"x":{"links":{"source":[0,1,2,2,3,4],"target":[2,2,3,4,5,6],"value":[10,10,10,10,10,10]},"nodes":{"name":["Sample Notes (xlsx) \n ReportGrp","Base Code config chunk -> set reportType = interlab OR pt (~line 70)","Base Code Chunk 2d (~line 400)","Base Code all subsequent df's = PT + both","Base Code all subequent df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"],"group":["Sample Notes (xlsx) \n ReportGrp","Base Code config chunk -> set reportType = interlab OR pt (~line 70)","Base Code Chunk 2d (~line 400)","Base Code all subsequent df's = PT + both","Base Code all subequent df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-0ebaef3d84a583a21897" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-0ebaef3d84a583a21897">{"x":{"links":{"source":[0,1,2,2,3,4],"target":[2,2,3,4,5,6],"value":[10,10,10,10,10,10]},"nodes":{"name":["Sample Notes (xlsx)","Base Code config chunk reportType","Base Code Chunk 2d (~line 400)","Base Code df's = PT + both","Base Code df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"],"group":["Sample Notes (xlsx)","Base Code config chunk reportType","Base Code Chunk 2d (~line 400)","Base Code df's = PT + both","Base Code df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1490,17 +1529,17 @@ refactoring requires us to be able to ensure that behavior remains identical at 
 <h3 data-number="9.4.1" class="anchored" data-anchor-id="misc.-heap-of-code"><span class="header-section-number">9.4.1</span> Misc. heap of code</h3>
 <p>Find main package list + versions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="in">print(head</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="in">      (tibble::tibble(</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="in">        Package = names(installed.packages()[,3]),</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="in">        Version = unname(installed.packages()[,3])</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="in">      ), n=600 #where n = an appropriately large value to capture all your packages</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="in">      )</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="in">print(head</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="in">      (tibble::tibble(</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="in">        Package = names(installed.packages()[,3]),</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="in">        Version = unname(installed.packages()[,3])</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="in">      ), n=600 #where n = an appropriately large value to capture all your packages</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="in">      )</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 190 × 2
+<pre><code># A tibble: 193 × 2
    Package   Version 
    &lt;chr&gt;     &lt;chr&gt;   
  1 askpass   1.2.0   
@@ -1513,10 +1552,10 @@ refactoring requires us to be able to ensure that behavior remains identical at 
  8 bitops    1.0-7   
  9 blob      1.2.4   
 10 boot      1.3-28.1
-# ℹ 180 more rows</code></pre>
+# ℹ 183 more rows</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd</span> //c tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd</span> //c tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 </section>
