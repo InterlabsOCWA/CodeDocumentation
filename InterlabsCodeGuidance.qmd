@@ -1,6 +1,6 @@
 ---
 title: "Wastewater Surveillance Interlab Program Analytical Code Documentation"
-author: "YJ, JH"
+author: "Jane Ho / Yuhan Jiang (github)"
 number-sections: true
 format:
   html:
@@ -14,7 +14,6 @@ format:
 # - get comfortable authoring in quarto - both to complete online workshop https://rstudio-conf-2022.github.io/get-started-quarto/
 # - insert inventory tables & flow chart images - YH
 # - edit tables & images as needed - JH
-# - Github section - YH to learn+teach in section
 ```
 
 
@@ -37,7 +36,6 @@ format:
 library(networkD3) #for flowcharts
 library(reticulate)#to run python in this file
 ```
-
 
 ## Introduction
 
@@ -74,9 +72,8 @@ The base code is in the Rmarkdown format with the process and optional analysis 
 
 #### Figure 1: Intra-base code relationships
 ```{r}
-#Yuhan to insert flowchart code and execute the code to show figure
 #*Deliverable: Inventory & flowchart of external relationships*
-#2.  Inventory existing internal code dependencies and timelines (in-progress work shown in Figure 1) *(4 weeks / July 2023)*\
+#2.  Inventory existing internal code dependencies and timelines (in-progress work shown in Figure 1) 
 # **Deliverable: Inventory & flowchart of intra-basecode relationships**
 ```
 : Intra-base code relationships
@@ -85,30 +82,38 @@ The base code is in the Rmarkdown format with the process and optional analysis 
 nodes = data.frame("name" = 
                      c("Emails",                                # 0
                        "Raw data",                              # 1
-                       "Clean data",                            # 2
-                       "data_notes",                            # 3
-                       "WBE_SampleCode.Rmd",                    # 4
-                       "plots",                                 # 5
-                       "dataframe",                             # 6
-                       "report"))                               # 7
+                       "QAQC check app (local/shinyapps)",      # 2
+                       "Clean data xlsx set",                   # 3
+                       "yyyymmdd_Sample_Notes.xlsm",            # 4
+                       "config dt_methods.xlsx",                # 5
+                       "WBE_SampleCode.rmd (github)",               # 6
+                       "ggplot& gt .rds objects",               # 7
+                       "svg, png plots, csv tables ",           # 8
+                       "testReport_typst.qmd (github)",             # 9
+                       "html report",                           # 10
+                       "pdf report"))                           # 11
 
 links = as.data.frame(matrix(c(
   0, 1, 1, # Each row represents a link. The first number
   1, 2, 1, # represents the node being conntected from. 
-  1, 3, 1, # the second number represents the node connected to.
-  2, 4, 1, # The third number is the value of the node
-  3, 4, 1,
-  4, 5, 1,
-  4, 6, 1,
-  5, 7 ,1,
-  6, 7, 1),
+  2, 3, 1, # the second number represents the node connected to.
+  3, 6, 1, # The third number is the value of the node
+  4, 6, 0.5,
+  5, 6, 0.5,
+  6, 7 ,0.25,
+  6, 8, 0.33,
+  6, 9, 0.625,
+  7, 9, 0.625,
+  9, 10, 0.31,
+  9, 11, 0.31),
   byrow = TRUE, ncol = 3))
 
 names(links) = c("source", "target", "value")
 sankeyNetwork(Links = links, Nodes = nodes,
               Source = "source", Target = "target",
               Value = "value", NodeID = "name",
-              fontSize= 12, nodeWidth = 25)
+              fontSize= 10, nodeWidth = 10)
+
 ```
 
     
@@ -129,6 +134,9 @@ To avoid issues, the whole path to local working project directory and names of 
 |Software|Purpose|Min. Version| (Extensions)|
 |--------|-------|------------|-----------|
 |Notepad ++| version control: pre-merging manual comparison|v8.5| Plugin: Compare v2|
+|R, RStudio| | | |
+|Quarto| | | |
+|Python| | | |
 :  Software and Versions used {#software-version}
 
 ## R Environment
@@ -213,6 +221,9 @@ When renv’s Python integration is active, a couple extra features will activat
 - Calling reticulate::py_install() will install packages into the project’s Python environment by default.  
 - When renv::snapshot() is called, your project’s Python library will also be captured into requirements.txt (for virtual environments) / environment.yml (for Conda environments).  
 - Similarly, renv::restore() will also attempt to restore your Python environment, as encoded in requirements.txt / environment.yml from a previous snapshot.  
+
+## Quarto 
+tbd
 
 ## Python
 - To check your version of python, use command line or in python:
@@ -791,7 +802,7 @@ Prior to usage, decide if you are at the point of writing to database (i.e. have
 ### db branch  
 This branch has been incorporated with web branch as of Sample Tarkin and is no longer in use.  
 
-## Report split-generation
+## Report split-generation [obsolesced since end of MECP WSI program]
 1. Use new sample notes which has an additional field for report group, which must be filled as pt, interlab, or both.  
 ![sample notes spreadsheet](img/sampleNotesRptGrp.png)  
 2. In Tarkin round of github (currently a development branch), the base code is altered 
