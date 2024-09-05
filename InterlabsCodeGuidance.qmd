@@ -6,7 +6,12 @@ format:
   html:
     toc: true
     html-math-method: katex
-
+project:
+  type: website
+  pre-render: "echo let the render begin!"
+  post-render:
+    - "cp -rv InterlabsCodeGuidance.html index.html"
+    - "cp -rv InterlabsCodeGuidance_files/. index_files/"
 ---
 ```{r,  eval=FALSE, echo = FALSE}
 # to-do's
@@ -70,7 +75,7 @@ An inventory of file and code relationships external to the main codebase is cur
 ## Code Internal Structure
 The base code is in the Rmarkdown format with the process and optional analysis codes segmented as chunks.  Explanatory notes are primarily written in markdown prefacing each chunk of code, alongside minor comments in-line within the code chunk.  The chunks should be run from top-down to ensure that prerequisite objects are generated; part of the explanatory notes prefacing each chunk details the prerequisite requirements, and is summarized below.
 
-#### Figure 1: Intra-base code relationships
+#### 
 ```{r}
 #*Deliverable: Inventory & flowchart of external relationships*
 #2.  Inventory existing internal code dependencies and timelines (in-progress work shown in Figure 1) 
@@ -79,6 +84,8 @@ The base code is in the Rmarkdown format with the process and optional analysis 
 : Intra-base code relationships
 
 ```{r, echo = FALSE}
+#| fig-cap: Intra code relationships
+#| label: fig-workflow
 nodes = data.frame("name" = 
                      c("Emails",                                # 0
                        "Raw data",                              # 1
@@ -134,9 +141,13 @@ To avoid issues, the whole path to local working project directory and names of 
 |Software|Purpose|Min. Version| (Extensions)|
 |--------|-------|------------|-----------|
 |Notepad ++| version control: pre-merging manual comparison|v8.5| Plugin: Compare v2|
-|R, RStudio| | | |
-|Quarto| | | |
-|Python| | | |
+|R, RStudio|data analysis| |latest versions comes packaged with Quarto|
+|Quarto|publishing system|1.6.6|this version includes page orientation toggle; add homebrewed pt zip|
+|Python|file manipulation| | |
+|[Visual Studio2022 - Community](https://visualstudio.microsoft.com/)| | | |
+|[SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)| | | |
+|[SQL Server - Developer](https://www.microsoft.com/en-ca/sql-server/sql-server-downloads)| | | |
+
 :  Software and Versions used {#software-version}
 
 ## R Environment
@@ -145,20 +156,21 @@ A reproducible environment for the project inside R is managed using the renv pa
 
 ### Package Dependencies
 Based on line-by-line run of the [base code ](https://github.com/InterlabsOCWA/Base_code/commit/1a4da2e5cbb78f3b97cf4cabb2dd783d574a163e), otherwise named as "WBE_Sample_Phasma-CA_20230607 - facet_fractionplusHK.Rmd", the necessary packages were determined to be (flag jh - maybe take from renv.lock/github main):  
-* ggplot2  
-* tidyverse
-* fs
-* janitor
-* readxl
-* ggh4x
-* RColorBrewer
-* scales
-* writexl
-* devEMF
-* DescTools
-* ggpubr
-* officer
-
+-ggplot2  
+-tidyverse
+-fs
+-janitor
+-readxl
+-ggh4x
+-RColorBrewer
+-scales
+-writexl
+-devEMF
+-DescTools
+-ggpubr
+-officer
+-cowplot
+-plotly
 
 
 ::: {.callout-caution}
@@ -166,7 +178,6 @@ If your work requires changing versions of or adding packages, please refer to [
   
 Any package update as well as the initial set-up should be done in consultation with the team, as it may force update of certain packages if the versions logged in the controlled lock file are no longer available from the download source.   (https://stackoverflow.com/questions/60779096/error-installing-packages-using-renvrestore)
 :::
-
 
 The following steps are referenced from [NYU's introduction to renv](https://sites.google.com/nyu.edu/nyu-hpc/hpc-systems/greene/software/r-packages-with-renv/).  
 
@@ -223,7 +234,15 @@ When renv’s Python integration is active, a couple extra features will activat
 - Similarly, renv::restore() will also attempt to restore your Python environment, as encoded in requirements.txt / environment.yml from a previous snapshot.  
 
 ## Quarto 
-tbd
+Quarto is an open-source scientific and technical publishing system which should available "in-the-box" with current versions of RStudio.  (If running an older version, please download the standalone quarto executable and provide instruction via terminal to use quarto)
+Quarto syntax is based on markdown ~ refer to [primer](https://quarto.org/docs/authoring/markdown-basics.html).  It is currently used for published reports in the program, e.g. this documentation paper, and the proficiency test reports (basecode ~ testReport-typst.qmd).  
+
+Specific to the proficiency test reports, elements are required for compilation are (besides key workflow inputs depicted at @fig-workflow) as shown:  
+- the custom extension "pt" must be added.  Extract zip to base code, in the RStudio terminal run: quarto use template pt, then select no to creating a new subdirectory, select yes to use the template, and yes for replacing basecode.qmd  
+- qmdElem folder must have rds objects generated from base code and misc. images  
+- assets folder holding the labstats logo
+  
+To publish proficiency test reports, select render as pt-typst for pdf, and render as html for standalone html.  
 
 ## Python
 - To check your version of python, use command line or in python:
@@ -231,47 +250,6 @@ tbd
 import sys
 print(sys.version)
 
-## .NET MVC (C#)
-1. **What is MVC Paradigm?**
-- Model
-    - Represent the application's data as objects.
-    - Interact with the database to add, edit, view or delete data.
-    - Contain classes that define the data structure.
-
-- View
-    - Represent the presentation layer (UI).
-    - Display the data from Model layer to user.
-    - Consist of HTML, CSS, and Razor syntax to create pages.
-
-- Controller
-    - Connect Model and View.
-    - Handle user input, process and return the appropriate View.
-    - Contain business logic.
-
-2. **How MVC works in .NET**
-  - **Request Flow**: When a user interacts with an ASP.NET MVC application, the request is routed to a specific controller and action method based on the URL.
-  - **Controller Action**: Process the request and interacts with the Model to retrieve or update data.
-  - **Returning a View**: The controller action then returns a View, which is rendered as HTML and sent back to the user's browser. 
-
-
-3. **Create Branch in Visual Studio**
-- Clone the [ PTplatform Repository ](https://github.com/InterlabsOCWA/PTplatform).
-- Navigate the file, and open the project by clicking the  "PTplatform.sln".
-- From the **Git** menu, select **New Branch**. 
-![VS Git Menu](img/git-menu-new-branch.png)
-- In the **Create a new branch** dialog box, enter a branch name.
-![VS Git New Branch](img/git-create-new-branch-dialog.png)
-  - Find **master** from **Based on:** dropdown and click it.
-- Click **Create**. You are now on the new branch.
-
-4. **Commit & Push in Visual Studio?**
-- At the top Menu, Click **Git**.
-- Click **Commit or Stash...**.
-  - You can see all the changes you've made under Changes.
-- Write a commit notes in the **Enter a message**  ex. Home UI implemented.
-![VS Git Commit](img/git-changes-window.png)
-- Click **Commit All** button.
-- For push, click this arrow pointing up![Push btn](img/push.png).
 
 
 ## Postgres SQL database set-up (subject to change)
@@ -732,7 +710,8 @@ Once lintr is installed, it can be accessed in RStudio.  In order to see the dia
 To run lintr, open Tools > Addins. From the pop-up window, select lintr from the addin's list and execute on the open code file.  
 ![](img/lintrRStudio.png)
 
-::: {.callout-note} You can bind this linting process to a keyboard shortcut in RStudio in the addin's window, with Shift+Alt+L recommended *
+::: {.callout-note} 
+You can bind this linting process to a keyboard shortcut in RStudio in the addin's window, with Shift+Alt+L recommended *
 The user may then use the lintr result in the Markers pane as a guide to modify code format.  Automated linting (e.g. styler package) is not recommended at this point.  More options for linting and details are available for reference at https://blog.r-hub.io/2022/03/21/code-style/ 
 :::
 

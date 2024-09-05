@@ -269,8 +269,8 @@ window.Quarto = {
 <section id="code-internal-structure" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="code-internal-structure"><span class="header-section-number">1.2</span> Code Internal Structure</h2>
 <p>The base code is in the Rmarkdown format with the process and optional analysis codes segmented as chunks. Explanatory notes are primarily written in markdown prefacing each chunk of code, alongside minor comments in-line within the code chunk. The chunks should be run from top-down to ensure that prerequisite objects are generated; part of the explanatory notes prefacing each chunk details the prerequisite requirements, and is summarized below.</p>
-<section id="figure-1-intra-base-code-relationships" class="level4" data-number="1.2.0.1">
-<h4 data-number="1.2.0.1" class="anchored" data-anchor-id="figure-1-intra-base-code-relationships"><span class="header-section-number">1.2.0.1</span> Figure 1: Intra-base code relationships</h4>
+<section id="section" class="level4" data-number="1.2.0.1">
+<h4 data-number="1.2.0.1" class="anchored" data-anchor-id="section"><span class="header-section-number">1.2.0.1</span> </h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#*Deliverable: Inventory &amp; flowchart of external relationships*</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#2.  Inventory existing internal code dependencies and timelines (in-progress work shown in Figure 1) </span></span>
@@ -278,9 +278,16 @@ window.Quarto = {
 </div>
 <p>: Intra-base code relationships</p>
 <div class="cell">
-<div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-bfd371d67f5e5c76a198" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-bfd371d67f5e5c76a198">{"x":{"links":{"source":[0,1,2,3,4,5,6,6,6,7,9,9],"target":[1,2,3,6,6,6,7,8,9,9,10,11],"value":[1,1,1,1,0.5,0.5,0.25,0.33,0.625,0.625,0.31,0.31]},"nodes":{"name":["Emails","Raw data","QAQC check app (local/shinyapps)","Clean data xlsx set","yyyymmdd_Sample_Notes.xlsm","config dt_methods.xlsx","WBE_SampleCode.rmd (github)","ggplot& gt .rds objects","svg, png plots, csv tables ","testReport_typst.qmd (github)","html report","pdf report"],"group":["Emails","Raw data","QAQC check app (local/shinyapps)","Clean data xlsx set","yyyymmdd_Sample_Notes.xlsm","config dt_methods.xlsx","WBE_SampleCode.rmd (github)","ggplot& gt .rds objects","svg, png plots, csv tables ","testReport_typst.qmd (github)","html report","pdf report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":10,"fontFamily":null,"nodeWidth":10,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div id="fig-workflow" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-18da546a96e37970c935" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-18da546a96e37970c935">{"x":{"links":{"source":[0,1,2,3,4,5,6,6,6,7,9,9],"target":[1,2,3,6,6,6,7,8,9,9,10,11],"value":[1,1,1,1,0.5,0.5,0.25,0.33,0.625,0.625,0.31,0.31]},"nodes":{"name":["Emails","Raw data","QAQC check app (local/shinyapps)","Clean data xlsx set","yyyymmdd_Sample_Notes.xlsm","config dt_methods.xlsx","WBE_SampleCode.rmd (github)","ggplot& gt .rds objects","svg, png plots, csv tables ","testReport_typst.qmd (github)","html report","pdf report"],"group":["Emails","Raw data","QAQC check app (local/shinyapps)","Clean data xlsx set","yyyymmdd_Sample_Notes.xlsm","config dt_methods.xlsx","WBE_SampleCode.rmd (github)","ggplot& gt .rds objects","svg, png plots, csv tables ","testReport_typst.qmd (github)","html report","pdf report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":10,"fontFamily":null,"nodeWidth":10,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Intra code relationships
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
@@ -298,12 +305,6 @@ window.Quarto = {
 <h2 data-number="2.1" class="anchored" data-anchor-id="general-software"><span class="header-section-number">2.1</span> General Software</h2>
 <table class="caption-top table">
 <caption>Software and Versions used {#software-version}</caption>
-<colgroup>
-<col style="width: 21%">
-<col style="width: 18%">
-<col style="width: 31%">
-<col style="width: 28%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Software</th>
@@ -321,18 +322,36 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td>R, RStudio</td>
+<td>data analysis</td>
 <td></td>
+<td>latest versions comes packaged with Quarto</td>
+</tr>
+<tr class="odd">
+<td>Quarto</td>
+<td>publishing system</td>
+<td>1.6.6</td>
+<td>this version includes page orientation toggle; add homebrewed pt zip</td>
+</tr>
+<tr class="even">
+<td>Python</td>
+<td>file manipulation</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>Quarto</td>
+<td><a href="https://visualstudio.microsoft.com/">Visual Studio2022 - Community</a></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>Python</td>
+<td><a href="https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16">SSMS</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.microsoft.com/en-ca/sql-server/sql-server-downloads">SQL Server - Developer</a></td>
 <td></td>
 <td></td>
 <td></td>
@@ -346,8 +365,8 @@ window.Quarto = {
 <section id="package-dependencies" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="package-dependencies"><span class="header-section-number">2.2.1</span> Package Dependencies</h3>
 <p>Based on line-by-line run of the <a href="https://github.com/InterlabsOCWA/Base_code/commit/1a4da2e5cbb78f3b97cf4cabb2dd783d574a163e">base code</a>, otherwise named as “WBE_Sample_Phasma-CA_20230607 - facet_fractionplusHK.Rmd”, the necessary packages were determined to be (flag jh - maybe take from renv.lock/github main):<br>
-* ggplot2<br>
-* tidyverse * fs * janitor * readxl * ggh4x * RColorBrewer * scales * writexl * devEMF * DescTools * ggpubr * officer</p>
+-ggplot2<br>
+-tidyverse -fs -janitor -readxl -ggh4x -RColorBrewer -scales -writexl -devEMF -DescTools -ggpubr -officer -cowplot -plotly</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -470,7 +489,12 @@ When renv’s Python integration is active, a couple extra features will activat
 </section>
 <section id="quarto" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">2.3</span> Quarto</h2>
-<p>tbd</p>
+<p>Quarto is an open-source scientific and technical publishing system which should available “in-the-box” with current versions of RStudio. (If running an older version, please download the standalone quarto executable and provide instruction via terminal to use quarto) Quarto syntax is based on markdown ~ refer to <a href="https://quarto.org/docs/authoring/markdown-basics.html">primer</a>. It is currently used for published reports in the program, e.g.&nbsp;this documentation paper, and the proficiency test reports (basecode ~ testReport-typst.qmd).</p>
+<p>Specific to the proficiency test reports, elements are required for compilation are (besides key workflow inputs depicted at <a href="#fig-workflow" class="quarto-xref">Figure&nbsp;1</a>) as shown:<br>
+- the custom extension “pt” must be added. Extract zip to base code, in the RStudio terminal run: quarto use template pt, then select no to creating a new subdirectory, select yes to use the template, and yes for replacing basecode.qmd<br>
+- qmdElem folder must have rds objects generated from base code and misc. images<br>
+- assets folder holding the labstats logo</p>
+<p>To publish proficiency test reports, select render as pt-typst for pdf, and render as html for standalone html.</p>
 </section>
 <section id="python" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="python"><span class="header-section-number">2.4</span> Python</h2>
@@ -995,7 +1019,19 @@ lintr package will be set up with the main code to provide diagnostic linting (i
 <p>Once lintr is installed, it can be accessed in RStudio. In order to see the diagnostic results, first enable the “Markers” pane by &gt; “Tools” &gt; “Global Options…” &gt; go to “Code” on the left-hand-side &gt; “Diagnostics” tab &gt; check “Show diagnostics for R”. The Markers pane will then be available tabbed next to Console/Terminal/Background Jobs to display lint results.</p>
 <p>To run lintr, open Tools &gt; Addins. From the pop-up window, select lintr from the addin’s list and execute on the open code file.<br>
 <img src="img/lintrRStudio.png" class="img-fluid"></p>
-<p>::: {.callout-note} You can bind this linting process to a keyboard shortcut in RStudio in the addin’s window, with Shift+Alt+L recommended * The user may then use the lintr result in the Markers pane as a guide to modify code format. Automated linting (e.g.&nbsp;styler package) is not recommended at this point. More options for linting and details are available for reference at https://blog.r-hub.io/2022/03/21/code-style/ :::</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can bind this linting process to a keyboard shortcut in RStudio in the addin’s window, with Shift+Alt+L recommended * The user may then use the lintr result in the Markers pane as a guide to modify code format. Automated linting (e.g.&nbsp;styler package) is not recommended at this point. More options for linting and details are available for reference at https://blog.r-hub.io/2022/03/21/code-style/</p>
+</div>
+</div>
 </section>
 <section id="refactoring" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Refactoring</h1>
@@ -1237,8 +1273,8 @@ N.B.<em>maybe cut out fnames for quicker read?</em></p>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-90271a3d04a733562265" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-90271a3d04a733562265">{"x":{"links":{"source":[0,1,2,2,3,4],"target":[2,2,3,4,5,6],"value":[10,10,10,10,10,10]},"nodes":{"name":["Sample Notes (xlsx)","Base Code config chunk reportType","Base Code Chunk 2d (~line 400)","Base Code df's = PT + both","Base Code df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"],"group":["Sample Notes (xlsx)","Base Code config chunk reportType","Base Code Chunk 2d (~line 400)","Base Code df's = PT + both","Base Code df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-1445bdce0f3c9c431c3f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-1445bdce0f3c9c431c3f">{"x":{"links":{"source":[0,1,2,2,3,4],"target":[2,2,3,4,5,6],"value":[10,10,10,10,10,10]},"nodes":{"name":["Sample Notes (xlsx)","Base Code config chunk reportType","Base Code Chunk 2d (~line 400)","Base Code df's = PT + both","Base Code df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"],"group":["Sample Notes (xlsx)","Base Code config chunk reportType","Base Code Chunk 2d (~line 400)","Base Code df's = PT + both","Base Code df's = Interlab + both","skeleton.rmd pt report","skeleton.rmd interlab report"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":12,"fontFamily":null,"nodeWidth":30,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
