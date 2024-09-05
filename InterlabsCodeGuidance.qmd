@@ -231,6 +231,48 @@ tbd
 import sys
 print(sys.version)
 
+## .NET MVC (C#)
+1. **What is MVC Paradigm?**
+- Model
+    - Represent the application's data as objects.
+    - Interact with the database to add, edit, view or delete data.
+    - Contain classes that define the data structure.
+
+- View
+    - Represent the presentation layer (UI).
+    - Display the data from Model layer to user.
+    - Consist of HTML, CSS, and Razor syntax to create pages.
+
+- Controller
+    - Connect Model and View.
+    - Handle user input, process and return the appropriate View.
+    - Contain business logic.
+
+2. **How MVC works in .NET**
+  - **Request Flow**: When a user interacts with an ASP.NET MVC application, the request is routed to a specific controller and action method based on the URL.
+  - **Controller Action**: Process the request and interacts with the Model to retrieve or update data.
+  - **Returning a View**: The controller action then returns a View, which is rendered as HTML and sent back to the user's browser. 
+
+
+3. **Create Branch in Visual Studio**
+- Clone the [ PTplatform Repository ](https://github.com/InterlabsOCWA/PTplatform).
+- Navigate the file, and open the project by clicking the  "PTplatform.sln".
+- From the **Git** menu, select **New Branch**. 
+![VS Git Menu](img/git-menu-new-branch.png)
+- In the **Create a new branch** dialog box, enter a branch name.
+![VS Git New Branch](img/git-create-new-branch-dialog.png)
+  - Find **master** from **Based on:** dropdown and click it.
+- Click **Create**. You are now on the new branch.
+
+4. **Commit & Push in Visual Studio?**
+- At the top Menu, Click **Git**.
+- Click **Commit or Stash...**.
+  - You can see all the changes you've made under Changes.
+- Write a commit notes in the **Enter a message**  ex. Home UI implemented.
+![VS Git Commit](img/git-changes-window.png)
+- Click **Commit All** button.
+- For push, click this arrow pointing up![Push btn](img/push.png).
+
 
 ## Postgres SQL database set-up (subject to change)
 N.B. database is local for now - local version being shared via "back-up and restore" method as described in https://stackoverflow.com/questions/30043392/copying-a-postgres-database-from-one-server-to-another  
