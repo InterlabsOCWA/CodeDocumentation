@@ -1096,6 +1096,134 @@ The testing structure provided in both frameworks is a key attractor.  Unit test
 - providers (Appsilon, ThinkR) & community support  
 - ease-of-approach to user authentication and payments (which are major feature needs)  
 
+# PT Platform
+
+> A comprehensive platform for managing Proficiency Testing (PT) rounds, protocols, and quality control validation for laboratories.
+
+## 🔐 Registration & Authentication
+
+::: {.callout-note title="Features"}
+- Users can register with: **First Name, Last Name, Lab, Email, and Password**.
+- Secure login using email and password.
+- Passwords are securely hashed and stored.
+:::
+
+## 🧪 Protocol Profile Management
+
+The protocol system is modular. A user-defined protocol consists of:
+
+### Sample Processing
+
+- Users can **add** or **delete** sample processing steps.
+- Supports custom naming and description.
+
+### Extraction
+
+- Users can **add** or **delete** extraction steps.
+- Allows entry of extraction details and conditions.
+
+### Quantification
+
+- Supports both **Singleplex** and **Multiplex**.
+- Users can:
+  - Add, edit, or delete quantification steps.
+  - Modify **target genes**.
+  - Add multiple targets for **Multiplex** assays.
+
+### Protocol Assembly
+
+::: {.callout-important title="Immutable Protocols"}
+Once saved, a protocol cannot be edited. This ensures version control and reproducibility.
+:::
+
+- Combines sample processing, extraction, and quantification.
+- Protocol types:
+  - `Primary`
+  - `Secondary`
+  - `Candidate`
+- Users can add protocols.
+- User can only delete protocols if it is not used in the result.
+
+## ✅ Quality Control Validation
+
+### Whole Process Control (Optional)
+
+- No specific validation rules; optional for documentation.
+
+### Whole Process Blank (Mandatory)
+
+- If result ≠ `MAX` (case-insensitive): **Yellow background warning**.
+- If non-numeric value: **Validation fails** (Red background).
+
+### Inhibition Control (Mandatory)
+
+- Dynamic form based on inhibition type:
+  - `Endogenous` or `Exogenous`
+- Auto-calculates:
+  - Average values for **Undiluted** and **Diluted**
+  - Final **Inhibition status**
+
+### Standard Curves (Mandatory)
+
+- Add both **registered** and **unregistered** target-assay pairs.
+- Supports:
+  - `Long-Term`
+  - `Short-Term`
+- Auto efficiency calculation:
+  - Must be between `90%` and `110%`
+- Dynamic chart display:
+  - Shows **slope**, **Cq points**, and **invalid points** (red border).
+
+### No Template Control (Mandatory)
+
+- Same validation as WPB:
+  - Result ≠ `MAX`: Yellow warning
+  - Non-numeric: Red failure
+
+### Positive Controls (Mandatory)
+
+- All results must be numeric.
+- Character values are rejected.
+
+## 📊 Result Submission
+
+- Preloaded Target–Assay pairs from registered protocols.
+- Users can:
+  - Add, edit, delete Target–Assay rows.
+
+::: {.callout-tip title="PCR-Specific Requirements"}
+
+- **qPCR**:
+  - 3 **Biological Replicates**
+  - Each with 3 **Technical Replicates**
+
+- **dPCR**:
+  - 3 **Biological Replicates**
+  - Each with 2 **Technical Replicates**
+
+:::
+
+Form behavior changes dynamically based on the selected PCR type.
+
+## 👥 User Roles and Permissions
+
+| Role         | Description |
+|--------------|-------------|
+| **Super Admin** | - Manage PT rounds<br>- View labs<br>- Download results as JSON format |
+| **Lab Admin**   | - Manage lab and staff (to be implemented)<br>- Submit results<br>- Download results as JSON format |
+| **Lab Staff**   | - Submit results<br>- Download results as JSON format |
+| **TAP**   | - tbd |
+
+---
+
+## 📁 Future Enhancements *(Optional Section)*
+
+::: {.callout-note title="Ideas for Future Enhancements"}
+- Enable Lab Admins to manage their lab staff directly through the platform.
+- Support uploading of analyzed results in PDF or HTML format.
+- Streamlined Lab Admin and Staff registration, triggered upon administrative approval.
+:::
+
 
 # References
 
